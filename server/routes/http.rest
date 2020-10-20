@@ -1,1 +1,21 @@
-GET http://localhost:3000/user
+// Get All Users
+GET http://localhost:3000/register
+
+###
+
+
+// Create User
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "username": "Greg",
+    "firstName": "Gregory",
+    "lastName": "T",
+    "email": "greg@gregory.com",
+    "password": "greg"
+}
+
+###
+
+DELETE http://localhost:3000/register/5f8e4f293f069732ef0a66b7

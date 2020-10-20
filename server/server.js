@@ -36,6 +36,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -58,11 +59,11 @@ db.once("open", () => {
   console.log(`Connected to Database`);
 });
 
+const registerRouter = require("./routes/register");
 // Defining route middleware
 app.use("/api", require("./routes/api"));
-app.use("/register", require("./routes/register"));
+app.use("/register", registerRouter);
 app.use("/login", require("./routes/login"));
-app.use("/users", require("./routes/users"));
 
 // Listening to port
 app.listen(port);
