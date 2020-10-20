@@ -1,6 +1,8 @@
 <template>
   <v-container name="register">
-    <div class="text-h1">Register</div>
+    <v-row class="d-flex">
+      <div class="text-h1">Register</div>
+    </v-row>
 
     <h2>{{ name.firstName }}</h2>
   </v-container>
