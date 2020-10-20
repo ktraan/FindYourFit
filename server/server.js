@@ -11,6 +11,10 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const morgan = require("morgan");
+
+// Routers
+const registerRouter = require("./routes/register");
 
 const initializePassport = require("./passport-config");
 initializePassport(
@@ -25,6 +29,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // Configure middlewares
+app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -45,12 +50,11 @@ app.set("view engine", "html");
 // Static folder
 app.use(express.static(__dirname + "/views/"));
 
+// Database connection
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-// Database connection
 const db = mongoose.connection;
 db.on("error", (error) => {
   console.error(error);
@@ -59,14 +63,12 @@ db.once("open", () => {
   console.log(`Connected to Database`);
 });
 
-const registerRouter = require("./routes/register");
 // Defining route middleware
-app.use("/api", require("./routes/api"));
 app.use("/register", registerRouter);
 app.use("/login", require("./routes/login"));
 
 // Listening to port
 app.listen(port);
-console.log(`Listening On http://localhost:${port}/api`);
+console.log(`Listening On http://localhost:${port}`);
 
 module.exports = app;
