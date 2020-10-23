@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: false,
+    required: true,
   },
   location: {
     type: String,
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     min: "1900-01-01",
     max: Date.now,
-    required: false,
+    required: true,
   },
   createdAt: {
     type: Date,

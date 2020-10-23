@@ -13,7 +13,11 @@ Content-Type: application/json
     "firstName": "Gregory",
     "lastName": "T",
     "email": "greg@gregory.com",
-    "password": "greg"
+    "password": "greg",
+    "gender": "M",
+    "location": "Edmonton, AB",
+    "birthday": "1990-01-01"
+
 }
 
 ###

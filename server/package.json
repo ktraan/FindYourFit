@@ -10,6 +10,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "cors": "^2.8.4",
     "dotenv": "^8.2.0",

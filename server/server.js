@@ -29,7 +29,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // Configure middlewares
-app.use(morgan("tiny"));
+app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
 app.use(
