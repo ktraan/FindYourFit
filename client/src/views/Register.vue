@@ -8,15 +8,27 @@
         <v-row class="d-flex justify-space-between  mt-10">
           <!-- First Col -->
           <v-col cols="6">
-            <v-text-field label="First Name" dense outlined> </v-text-field>
+            <v-text-field 
+              v-model="user.firstName"
+              name="firstName"
+              label="First Name" 
+              dense outlined
+            > 
+            </v-text-field>
+
             <v-text-field
+              v-model="user.email"
+              name="email"
               dense
               label="Email Address"
               hint="eg. fyf@gmail.com"
               outlined
             >
             </v-text-field>
+
             <v-text-field
+              v-model="user.password"
+              name="user.password"
               dense
               label="Password"
               hint="Password must have 8 characters or more."
@@ -25,24 +37,57 @@
             </v-text-field>
 
             <v-radio-group class="ml-1" label="Sex:" row dense>
-              <v-radio label="Male" color="blue darken-1" ripple></v-radio>
-              <v-radio label="Female" color="pink lighten-3" ripple></v-radio>
-              <v-radio label="Other" color="purple accent-4" ripple></v-radio>
+              <v-radio class="asdf"
+                v-model="user.gender"
+                v-bind:name="maleGender"
+                label="Male" 
+                color="blue darken-1" 
+                
+                >
+              </v-radio>
+              <v-radio  
+                v-model="user.gender"
+                v-bind:name="femaleGender"
+                value="Female" 
+                label="Female" 
+                color="pink lighten-3"
+              >
+              </v-radio>
+              <v-radio
+                v-model="user.gender"
+                v-bind:name="otherGender"
+                value="Other" 
+                label="Other" 
+                color="purple accent-4"
+                >
+              </v-radio>
             </v-radio-group>
           </v-col>
 
           <!-- Second Col -->
           <v-col cols="6">
-            <v-text-field dense label="Last Name" outlined></v-text-field>
+            <v-text-field 
+              v-model="user.lastName"
+              name="lastName"
+              dense 
+              label="Last Name" 
+              outlined>
+            </v-text-field>
+
             <v-text-field
+              v-model="user.birthday"
+              name="birthday"
               dense
               label="Date of Birth"
               hint="eg. 2020-01-30"
               outlined
             >
             </v-text-field>
+
+            <!-- TODO: Compare this input with other password -->
             <v-text-field dense label="Confirm Password" outlined>
             </v-text-field>
+
             <v-text-field
               dense
               label="Location"
@@ -60,11 +105,13 @@
               class="primary text-capitalize text-h6 ml-5 mr-5"
               width="150"
               height="40"
+              @click="onClickLogger"
             >
               Submit
             </v-btn>
           </v-row>
         </v-row>
+        {{ }}
       </v-card>
     </v-row>
 
@@ -77,10 +124,41 @@ const GET_URL = "http://localhost:3000/register";
 
 export default {
   name: "register",
-  data: () => ({
-    error: "",
-    name: [],
-  }),
+  data: () => {
+    return {
+      // Gender strings
+      // TODO: Send Gender as these variables
+      maleGender: "Male",
+      femaleGender: "Female",
+      otherGender: "Other",
+
+      user: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        gender: '',
+        location: '',
+        birthday: '',
+        
+      }
+    }
+    
+    
+  },
+  methods: {
+    
+    // Test Method to console.log
+    onClickLogger(){ 
+      let data = {
+        firstName: this.user.firstName,
+        gender2: this.gender,
+        // gender3: this.gender.name,
+        
+      }
+      console.log(data)
+    }
+  }
   // mounted() {
   //   fetch(GET_URL)
   //     .then((response) => response.json())
