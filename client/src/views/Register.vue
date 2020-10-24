@@ -21,6 +21,7 @@
 
               <v-text-field
                 v-model.trim="user.email"
+                :rules="emailRules"
                 name="email"
                 dense
                 label="Email Address"
@@ -31,10 +32,7 @@
 
               <v-text-field
                 v-model.trim="user.password"
-                :rules="[
-                  user.password === confirmedPassword ||
-                    ('Passwords do not match' && passwordRules),
-                ]"
+                :rules="passwordRules"
                 name="password"
                 dense
                 label="Password"
@@ -43,27 +41,24 @@
               >
               </v-text-field>
 
-              <v-radio-group class="ml-1" label="Sex:" row dense>
+              <v-radio-group v-model="genderGroup" class="ml-1" label="Sex:" row dense>
                 <v-radio
-                  class="asdf"
-                  v-model.trim="user.gender"
-                  v-bind:name="maleGender"
+                  
+                  :value="'Male'"
                   label="Male"
                   color="blue darken-1"
                 >
                 </v-radio>
                 <v-radio
-                  v-model="user.gender"
-                  v-bind:name="femaleGender"
-                  value="Female"
+                  
+                  :value="'Female'"
                   label="Female"
                   color="pink lighten-3"
                 >
                 </v-radio>
                 <v-radio
-                  v-model="user.gender"
-                  v-bind:name="otherGender"
-                  value="Other"
+                  
+                  :value="'Other'"
                   label="Other"
                   color="purple accent-4"
                 >
@@ -123,7 +118,7 @@
                 class="primary text-capitalize text-h6 ml-5 mr-5"
                 width="150"
                 height="40"
-                @click="onClickLogger"
+                @click="createUser"
               >
                 Submit
               </v-btn>
@@ -137,18 +132,18 @@
 </template>
 
 <script>
+import RegisterDataService from '../services/RegisterDataService'
+
 const GET_URL = "http://localhost:3000/register";
 
 export default {
   name: "register",
   data: () => {
-    return {
-      // Gender strings
-      // TODO: Send Gender as these variables
-      maleGender: "Male",
-      femaleGender: "Female",
-      otherGender: "Other",
+    
 
+    return {
+      errors: [],
+      genderGroup: "",
       user: {
         firstName: "",
         lastName: "",
@@ -162,11 +157,13 @@ export default {
       confirmedPassword: "",
 
       valid: true,
+
       firstNameRules: [
-        (name) => !!name || "First Name Required",
+        (name) => (!!name) || "First Name Required",
         (name) => (name && name.length > 0) || "Cannot be empty",
         (name) => (name && name.length <= 35) || "Cannot exceed 35 characters",
       ],
+      
       lastNameRules: [
         (name) => !!name || "Last Name Required",
         (name) => (name && name.length > 0) || "Cannot be empty",
@@ -178,7 +175,12 @@ export default {
           (pw && pw.length >= 8) || "Password must be at least 8 characters",
       ],
       confirmedPasswordRules: [(pw) => !!pw || "Password Required"],
+      emailRules: [
+        (email) => !!email || "Email Required",
+        (email) => (email && /.+@.+/.test(email) || "Email must be valid" )
+      ]
     };
+    
   },
   methods: {
     validate() {
@@ -190,27 +192,38 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
+    
+    createUser() {
+      let data = {
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email,
+        password: this.user.password,
+        gender: this.genderGroup,
+        location: this.user.location,
+        birthday: this.user.birthday,
+      }
+      RegisterDataService.create(data).then(response => {
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+
     // Test Method to console.log
     onClickLogger() {
       let data = {
         firstName: this.user.firstName,
-        gender2: this.gender,
+        gender2: this.genderGroup,
         cP: this.confirmedPassword,
-        // gender3: this.gender.name,
+        
       };
       console.log(data);
     },
   },
-  // mounted() {
-  //   fetch(GET_URL)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       {
-  //         console.log(data);
-  //         this.name = data[0];
-  //       }
-  //     });
-  // },
+  computed: {
+
+  }
 };
 </script>
 

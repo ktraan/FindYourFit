@@ -4,6 +4,8 @@ const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const userController = require('../controllers/user_controller')
+
+
 // Get All Users
 router.get("/", userController.getAllUsers);
 
