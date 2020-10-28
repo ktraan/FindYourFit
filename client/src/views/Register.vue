@@ -1,14 +1,18 @@
 <template>
-  <v-form>
-    <v-container ref="form" v-model="valid" lazy-validation>
+<v-form ref="form" v-model="valid" lazy-validation>
+    <v-container>
       <v-row class="d-flex justify-center mt-10">
-        <v-card class="pa-5" width="700" height="500">
+        <v-card class="pa-5" width="730" height="500" elevation="12">
           <v-row class="d-flex justify-center">
-            <div class="text-h4 mt-5">Register</div>
+            <div class="text-h4 mt-5">Register to Find Your Fit!</div>
           </v-row>
-          <v-row class="d-flex justify-space-between  mt-10">
+          <div class=" d-flex justify-center mt-5">Please fill out your details to register now.</div>
+          <v-divider class="mx-4 mt-3"></v-divider>
+          <v-row class="d-flex justify-space-between mt-3">
+            
             <!-- First Col -->
-            <v-col cols="6">
+            <v-col cols="6" class="pa-5">
+              
               <v-text-field
                 v-model.trim="user.firstName"
                 :rules="firstNameRules"
@@ -67,7 +71,7 @@
             </v-col>
 
             <!-- Second Col -->
-            <v-col cols="6">
+            <v-col cols="6" class="pa-5">
               <v-text-field
                 v-model.trim="user.lastName"
                 :rules="lastNameRules"
@@ -81,6 +85,7 @@
               <v-text-field
                 v-model.trim="user.birthday"
                 name="birthday"
+                :rules="birthdayRules"
                 dense
                 label="Date of Birth"
                 outlined
@@ -102,6 +107,7 @@
 
               <v-text-field
                 v-model.trim="user.location"
+                :rules="locationRules"
                 dense
                 label="Location"
                 hint="eg. Edmonton, AB"
@@ -109,23 +115,25 @@
               >
               </v-text-field>
             </v-col>
+            
             <v-row class="justify-end">
-              <v-btn class="text-capitalize text-h6" width="150" height="40"
+              <v-btn class="text-capitalize text-h6" text
                 >Cancel
               </v-btn>
 
               <v-btn
-                class="primary text-capitalize text-h6 ml-5 mr-5"
-                width="150"
-                height="40"
-                @click="createUser"
+                :disabled="!valid"
+                class=" text-capitalize text-h6 ml-3 mr-5"
+                text
+                @click="submit"
               >
                 Submit
               </v-btn>
-            </v-row>
+              </v-row>
           </v-row>
         </v-card>
       </v-row>
+      
       <!-- <h2>{{ name.firstName }}</h2> -->
     </v-container>
   </v-form>
@@ -178,13 +186,27 @@ export default {
       emailRules: [
         (email) => !!email || "Email Required",
         (email) => (email && /.+@.+/.test(email) || "Email must be valid" )
-      ]
+      ],
+      locationRules: [
+        (loc) => !!loc || "Location Required",
+
+      ],
+      birthdayRules: [
+        (bday) => !!bday || "Birthday Required"
+      ],
+
     };
     
   },
   methods: {
-    validate() {
-      this.$ref.form.validate();
+    submit() {
+      if (this.$ref.form.validate()){
+        createUser()
+        console.log('suceesd')
+      }
+      else(
+        console.log('nop')
+      )
     },
     reset() {
       this.$refs.form.reset();

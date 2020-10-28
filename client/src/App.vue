@@ -1,20 +1,21 @@
 <template>
   <v-app>
-    <v-app-bar class="d-flex justify-space-around" max-height="70" >
-      <router-link to="/">Home</router-link>
-      <router-link to="/register">Register</router-link>
-      <router-link to="/login">Login</router-link>
-    </v-app-bar>
+    <Header />
+    
     <v-main>
+      <v-icon>fas fa-lock </v-icon>
       <router-view />
+      
     </v-main>
+    
   </v-app>
 </template>
 
 <script>
+import Header from '../src/components/Header'
 export default {
   name: "App",
-
+  components: { Header },
   data: () => ({
     //
   }),
