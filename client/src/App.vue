@@ -26,7 +26,16 @@ export default {
   data: () => ({
     //
   }),
-    computed: {
+  // This watcher is to change page titles
+  watch: {
+      '$route':{
+        handler: (to, from) => {
+          document.title = to.meta.title || 'Find Your Fit'
+        },
+         immediate: true
+      }
+    },
+  computed: {
     isNotHome() {
       return this.$route.name !== "home";
     },

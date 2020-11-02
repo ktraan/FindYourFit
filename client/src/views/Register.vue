@@ -117,7 +117,7 @@
             </v-col>
             
             <v-row class="justify-end">
-              <v-btn class="text-capitalize text-h6" text
+              <v-btn class="text-capitalize text-h6" text href="/"
                 >Cancel
               </v-btn>
 

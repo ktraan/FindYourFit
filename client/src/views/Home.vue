@@ -2,10 +2,10 @@
   <v-container fluid>
     <v-spacer></v-spacer>
     <v-row class=" justify-space-between">
-      <v-img src="../..//public/yoga.jpg" max-width="900">
+      <v-img src="../..//public/yoga.jpg" max-width="920" height="633">
       </v-img>
 
-      <v-col cols="6" class="mt-auto mb-10">
+      <v-col cols="6" class="mt-auto mb-16">
         <h1 class="h1-text  font-weight-regular">
           Find Your Fit
         </h1>
@@ -41,7 +41,7 @@ export default {
 <style>
 .container {
   background-color: #dbd9d9;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .h1-text{
   font-size: 100px;
