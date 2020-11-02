@@ -16,17 +16,26 @@
       </v-col>
       <v-row class="justify-end">
         <v-col cols="6" class="mt-auto mb-auto">
-          <div class="description-text pb-6 font-weight-medium">
-            Finding the right fitness expert to meet your needs can be difficult
-            sometimes. Our mission is to help you find a health or fitness
-            professional to meet your goals effortlessly.
+          <div class="description-text pb-6 pa-1 font-weight-medium">
+            Finding the right fitness expert can be difficult
+            sometimes. Life often gets in the way when it comes to our health.
+            Our mission is to help you find a health or fitness professional to meet your goals effortlessly. 
           </div>
         </v-col>
-        <v-img src="../../public/stairs.jpg" max-width="950"></v-img
-      ></v-row>
+        <v-img src="../../public/stairs.jpg" max-width="960">
+        </v-img>
+      </v-row>
     </v-row>
-    <v-row></v-row>
-    <v-row></v-row>
+  
+    <v-row>
+      <v-img src="../../public/gym.jpg" max-width="920"></v-img>
+        <v-col cols="6" class="mt-auto mb-auto">
+        <h2 class="description-text ml-9 pa-5 font-weight-regular">
+          We want you to have the highest chance of achieving your end goal. 
+          Find Your Fit will help you find someone catered to exactly what you are looking for.
+        </h2>
+        </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -45,3 +45,9 @@ export default {
   },
 };
 </script>
+
+<style> 
+#app {
+  background-color: #dbd9d9;
+}
+</style>
