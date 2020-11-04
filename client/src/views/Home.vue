@@ -2,8 +2,7 @@
   <v-container fluid>
     <v-spacer></v-spacer>
     <v-row class=" justify-space-between">
-      <v-img src="../..//public/yoga.jpg" max-width="900">
-      </v-img>
+      <v-img src="../..//public/yoga.jpg" width="500" height="auto"> </v-img>
 
       <v-col cols="6" class="mt-auto mb-10">
         <h1 class="h1-text  font-weight-regular">
@@ -22,7 +21,7 @@
             professional to meet your goals effortlessly.
           </div>
         </v-col>
-        <v-img src="../../public/stairs.jpg" max-width="950"></v-img
+        <v-img src="../../public/stairs.jpg" width="500" height="auto"></v-img
       ></v-row>
     </v-row>
     <v-row></v-row>
@@ -43,10 +42,10 @@ export default {
   background-color: #dbd9d9;
   font-family: Arial, Helvetica, sans-serif;
 }
-.h1-text{
+.h1-text {
   font-size: 100px;
 }
-.description-text{
+.description-text {
   font-size: 35px;
 }
 </style>
