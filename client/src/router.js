@@ -14,6 +14,9 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home,
+      meta: {
+        title: "Find Your Fit"
+      }
     },
     {
       path: "/about",
@@ -24,11 +27,18 @@ export default new Router({
       path: "/register",
       name: "register",
       component: Register,
+      meta: {
+        title: "Register - Find Your Fit"
+      }
     },
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: Login,
+      meta: {
+        title: "Login - Find Your Fit"
+      }
     },
   ],
 });
+
