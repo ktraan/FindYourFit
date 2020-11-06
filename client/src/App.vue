@@ -4,13 +4,15 @@
     <v-main>
       <router-view />
     </v-main>
+    <Footer />
   </v-app>
 </template>
 <script>
 import HomePageHeader from "../src/components/HomePageHeader";
+import Footer from "../src/components/Footer";
 export default {
   name: "App",
-  components: { HomePageHeader },
+  components: { HomePageHeader, Footer },
   data: () => ({
     //
   }),

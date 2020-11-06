@@ -21,8 +21,9 @@
 
     <v-row>
       <v-img src="../../public/gym.jpg" max-width="950"></v-img>
+
       <v-col cols="6" class="mt-auto mb-auto">
-        <h2 class="description-text ml-9 pa-5 font-weight-regular">
+        <h2 class="description-text ml-5 pa-5 font-weight-regular">
           We want you to have the highest chance of achieving your end goal.
           Find Your Fit will help you find someone catered to exactly what you
           are looking for.
