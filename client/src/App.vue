@@ -17,11 +17,11 @@ export default {
   // This watcher is to change page titles
   watch: {
     $route: {
-      handler: (to, from) => {
+      handler: to => {
         document.title = to.meta.title || "Find Your Fit";
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   computed: {
     isNotHome() {
@@ -29,13 +29,7 @@ export default {
     },
     isHome() {
       return this.$route.name === "home";
-    },
-  },
+    }
+  }
 };
 </script>
-
-<style>
-#app {
-  background-color: #dbd9d9;
-}
-</style>

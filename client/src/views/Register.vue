@@ -143,8 +143,6 @@
 <script>
 import RegisterDataService from "../services/RegisterDataService";
 
-const GET_URL = "http://localhost:3000/register";
-
 export default {
   name: "register",
   data: () => {
@@ -158,7 +156,7 @@ export default {
         password: "",
         gender: "",
         location: "",
-        birthday: "",
+        birthday: ""
       },
 
       confirmedPassword: "",
@@ -166,36 +164,32 @@ export default {
       valid: true,
 
       firstNameRules: [
-        (name) => !!name || "First Name Required",
-        (name) => (name && name.length > 0) || "Cannot be empty",
-        (name) => (name && name.length <= 35) || "Cannot exceed 35 characters",
+        name => !!name || "First Name Required",
+        name => (name && name.length > 0) || "Cannot be empty",
+        name => (name && name.length <= 35) || "Cannot exceed 35 characters"
       ],
 
       lastNameRules: [
-        (name) => !!name || "Last Name Required",
-        (name) => (name && name.length > 0) || "Cannot be empty",
-        (name) => (name && name.length <= 35) || "Cannot exceed 35 characters",
+        name => !!name || "Last Name Required",
+        name => (name && name.length > 0) || "Cannot be empty",
+        name => (name && name.length <= 35) || "Cannot exceed 35 characters"
       ],
       passwordRules: [
-        (pw) => !!pw || "Password Required",
-        (pw) =>
-          (pw && pw.length >= 8) || "Password must be at least 8 characters",
+        pw => !!pw || "Password Required",
+        pw => (pw && pw.length >= 8) || "Password must be at least 8 characters"
       ],
-      confirmedPasswordRules: [(pw) => !!pw || "Password Required"],
+      confirmedPasswordRules: [pw => !!pw || "Password Required"],
       emailRules: [
-        (email) => !!email || "Email Required",
-        (email) => (email && /.+@.+/.test(email)) || "Email must be valid",
+        email => !!email || "Email Required",
+        email => (email && /.+@.+/.test(email)) || "Email must be valid"
       ],
-      locationRules: [(loc) => !!loc || "Location Required"],
-      birthdayRules: [(bday) => !!bday || "Birthday Required"],
+      locationRules: [loc => !!loc || "Location Required"],
+      birthdayRules: [bday => !!bday || "Birthday Required"]
     };
   },
   methods: {
     submit() {
-      if (this.$ref.form.validate()) {
-        createUser();
-        console.log("suceesd");
-      } else console.log("nop");
+      this.$refs.form.validate();
     },
     reset() {
       this.$refs.form.reset();
@@ -212,19 +206,19 @@ export default {
         password: this.user.password,
         gender: this.genderGroup,
         location: this.user.location,
-        birthday: this.user.birthday,
+        birthday: this.user.birthday
       };
       RegisterDataService.create(data)
-        .then((response) => {
+        .then(response => {
           this.$router.push("home");
           console.log(response.data);
         })
-        .catch((error) => {
+        .catch(error => {
           if (error.response.data.errors) {
             console.log("There were some errors");
 
             let entries = Object.entries(error.response.data.errors);
-            for (const [key, value] of Object.entries(entries)) {
+            for (const [value] of Object.entries(entries)) {
               // console.log(value[1].message);
               this.errors.push(value[1].message);
             }
@@ -246,12 +240,12 @@ export default {
       let data = {
         firstName: this.user.firstName,
         gender2: this.genderGroup,
-        cP: this.confirmedPassword,
+        cP: this.confirmedPassword
       };
       console.log(data);
-    },
+    }
   },
-  computed: {},
+  computed: {}
 };
 </script>
 

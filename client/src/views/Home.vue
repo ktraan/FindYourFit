@@ -43,13 +43,12 @@
 export default {
   name: "Home",
 
-  components: {},
+  components: {}
 };
 </script>
 
 <style>
 .container {
-  background-color: #dbd9d9;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
