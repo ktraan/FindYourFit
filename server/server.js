@@ -14,8 +14,9 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 
 
-// Routers
+// Routes
 const registerRouter = require("./routes/register");
+const loginRouter = require('./routes/login');
 
 const initializePassport = require("./passport-config");
 initializePassport(
@@ -66,7 +67,7 @@ db.once("open", () => {
 
 // Defining route middleware
 app.use("/register", registerRouter);
-app.use("/login", require("./routes/login"));
+app.use("/login", loginRouter);
 
 // Listening to port
 app.listen(port);

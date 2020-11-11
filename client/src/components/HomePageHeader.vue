@@ -1,7 +1,7 @@
 <template>
   <v-card class="overflow-hidden">
     <v-app-bar height="600" src="../../public/yoga.jpg" prominent>
-      <v-row class="d-flex mt-auto">
+      <v-row class="d-flex-xs mt-auto">
         <router-link to="/" class="">
           <v-img src="../../public/whitelotus.png" class="ml-5" width="100">
           </v-img>
@@ -32,6 +32,13 @@
     </v-app-bar>
   </v-card>
 </template>
+
+<script>
+export default {
+  name: "HomePageHeader",
+  methods: {}
+};
+</script>
 
 <style>
 .h1text {

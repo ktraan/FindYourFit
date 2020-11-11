@@ -36,6 +36,29 @@
   </v-container>
 </template>
 
+<script>
+import axios from "axios";
+
+export default {
+  name: "login",
+  data: () => {
+    return {
+      errors: [],
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {
+      let data = {
+        email: this.email,
+        password: this.password
+      };
+    }
+  }
+};
+</script>
+
 <style scoped>
 .v-text-field {
   width: 350px;
