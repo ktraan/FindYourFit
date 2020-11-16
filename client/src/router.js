@@ -1,8 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Register from "./views/Register";
-import Login from "./views/Login";
 
 Vue.use(Router);
 
@@ -13,7 +10,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home,
+      component: () => import("./views/Home.vue"),
       meta: {
         title: "Find Your Fit"
       }
@@ -21,12 +18,12 @@ export default new Router({
     {
       path: "/about",
       name: "about",
-      component: () => import("./views/About.vue"),
+      component: () => import("./views/About.vue")
     },
     {
       path: "/register",
       name: "register",
-      component: Register,
+      component: () => import("./views/Register.vue"),
       meta: {
         title: "Register - Find Your Fit"
       }
@@ -34,11 +31,34 @@ export default new Router({
     {
       path: "/login",
       name: "login",
-      component: Login,
+      component: () => import("./views/Login.vue"),
       meta: {
         title: "Login - Find Your Fit"
       }
     },
-  ],
+    {
+      path: "/dashboard",
+      name: "dashboard",
+      component: () => import("./views/Dashboard.vue"),
+      meta: {
+        title: "Dashboard - Find Your Fit"
+      }
+    },
+    {
+      path: "/listings",
+      name: "listings",
+      component: () => import("./views/Listings.vue"),
+      meta: {
+        title: "Listings - Find Your Fit"
+      }
+    },
+    {
+      path: "/createListing",
+      name: "create listing",
+      component: () => import("./views/CreateListing.vue"),
+      meta: {
+        title: "Create Listing - Find Your Fit"
+      }
+    }
+  ]
 });
-

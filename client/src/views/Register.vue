@@ -210,7 +210,7 @@ export default {
       };
       RegisterDataService.create(data)
         .then(response => {
-          this.$router.push("home");
+          this.$router.push("dashboard");
           console.log(response.data);
         })
         .catch(error => {
