@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "login",
   data: () => {
@@ -54,6 +52,7 @@ export default {
         email: this.email,
         password: this.password
       };
+      console.log(data);
     }
   }
 };
