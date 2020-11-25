@@ -9,17 +9,26 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username": "Greg",
-    "firstName": "Gregory",
-    "lastName": "T",
-    "email": "greg@gregory.com",
-    "password": "greg",
+    "username": "kevin",
+    "firstName": "kevin",
+    "lastName": "kevin",
+    "email": "kevin@kevin.com",
+    "password": "turtles2149",
     "gender": "M",
     "location": "Edmonton, AB",
     "birthday": "1990-01-01"
 
 }
 
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "kevin@kevin.com",
+    "password": "turtles2149"
+}
 ###
 
 DELETE http://localhost:3000/register/5f8e4f293f069732ef0a66b7

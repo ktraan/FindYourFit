@@ -34,6 +34,24 @@ createUser = async (req, res) => {
     })
 }
 
+login = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email }).exec();
+    if (!user) {
+      res.status(400).json({ message: "User doesn't exist"})
+    }
+    else if(!bcrypt.compareSync(req.body.password, user.password)) {
+      res.status(400).json({ message: "The password is invalid" });
+    } else (
+      res.status(200).json({ message: "Email and Password are correct!"})  
+    )
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500);
+  }
+}
+
 deleteUser = async (req, res) => {
     User.findByIdAndRemove(req.params.id).then(data => {
         if (!data) {
@@ -55,5 +73,6 @@ deleteUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     createUser,
+    login,
     deleteUser,
 }

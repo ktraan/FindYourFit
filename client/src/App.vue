@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <HomePageHeader />
-    <Header />
+    <HomePageHeader v-if="!isLoggedIn" />
+    <Header v-if="isLoggedIn" />
     <v-main>
       <router-view />
     </v-main>
@@ -28,11 +28,8 @@ export default {
     }
   },
   computed: {
-    isNotHome() {
-      return this.$route.name !== "home";
-    },
-    isHome() {
-      return this.$route.name === "home";
+    isLoggedIn: function() {
+      return this.$store.getters.isLoggedIn;
     }
   }
 };
