@@ -139,7 +139,7 @@
 </template>
 
 <script>
-import RegisterDataService from "../services/RegisterDataService";
+// import RegisterDataService from "../services/RegisterDataService";
 
 export default {
   name: "register",
@@ -209,7 +209,11 @@ export default {
       this.$store
         .dispatch("register", data)
         .then(() => this.$router.push("dashboard"))
-        .catch(err => console.log(err));
+        .catch(err => {
+          if (!err) {
+            this.$router.push("register");
+          }
+        });
       // RegisterDataService.create(data)
       //   .then(response => {
       //     this.$router.push("dashboard");

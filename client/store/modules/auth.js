@@ -2,51 +2,64 @@ import axios from "axios";
 
 const state = {
   status: "",
-  token: localStorage.getItem("token") || "",
-  user: {}
+  // token: localStorage.getItem("token") || "",
+  user: {},
+  loggedIn: false
 };
 
 const getters = {
-  isLoggedIn: state => !!state.token,
-  user: state => state.user
+  isLoggedIn: state => state.loggedIn,
+  // isLoggedIn: state => !!state.token,
+  user: state => state.user,
+  status: state => state.status
 };
 
 const actions = {
   async register({ commit }, user) {
     commit("auth_request");
     try {
-      axios.post("http://localhost:3000/register", user).then(res => {
-        const token = res.data.token;
-        const user = res.data.user;
-        localStorage.setItem("token", token);
-        commit("auth_success", token, user);
-      });
+      const res = await axios.post("http://localhost:3000/register", user);
+      if (res.status === 201) {
+        // console.log(res);
+        // console.log(res.data);
+        const user = res.data;
+        commit("auth_success", user);
+      } else {
+        commit("auth_error", res.data);
+      }
+      return res;
     } catch (error) {
-      commit("auth_error", error);
-      localStorage.removeItem("token");
+      console.log(error);
+      commit("auth_error", error.response);
+      return null;
     }
   },
-  async login({ commit }, user) {
-    commit("auth_request");
-    try {
-      axios.post("http://localhost:3000/register", user).then(res => {
-        const token = res.data.token;
-        const user = res.data.user;
-        localStorage.setItem("token", token);
-        commit("auth_success", token, user);
-      });
-    } catch (error) {
-      commit("auth_error", error);
-      localStorage.removeItem("token");
-    }
-  },
+
   async logout({ commit }) {
     commit("logout");
     localStorage.removeItem("token");
   }
 };
 
-const mutations = {};
+const mutations = {
+  auth_request(state) {
+    state.status = "loading";
+  },
+  auth_success(state, payload) {
+    state.status = "success";
+    state.user = payload;
+    state.loggedIn = true;
+    // state.token = payload.token;
+  },
+  auth_error(state) {
+    state.status = "error";
+  },
+  logout(state) {
+    state.status = "";
+    state.user = {};
+    state.loggedIn = false;
+  }
+};
 
 export default {
   state,

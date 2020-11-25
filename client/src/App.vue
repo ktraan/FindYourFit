@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <HomePageHeader />
+    <Header />
     <v-main>
       <router-view />
     </v-main>
@@ -10,9 +11,10 @@
 <script>
 import HomePageHeader from "../src/components/HomePageHeader";
 import Footer from "../src/components/Footer";
+import Header from "../src/components/Header";
 export default {
   name: "App",
-  components: { HomePageHeader, Footer },
+  components: { HomePageHeader, Footer, Header },
   data: () => ({
     //
   }),
