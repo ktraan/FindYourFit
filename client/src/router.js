@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from "../store/index.js";
 import Router from "vue-router";
 
 Vue.use(Router);

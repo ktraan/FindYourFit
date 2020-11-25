@@ -134,8 +134,6 @@
           </v-row>
         </v-card>
       </v-row>
-
-      <!-- <h2>{{ name.firstName }}</h2> -->
     </v-container>
   </v-form>
 </template>
@@ -208,31 +206,35 @@ export default {
         location: this.user.location,
         birthday: this.user.birthday
       };
-      RegisterDataService.create(data)
-        .then(response => {
-          this.$router.push("dashboard");
-          console.log(response.data);
-        })
-        .catch(error => {
-          if (error.response.data.errors) {
-            console.log("There were some errors");
+      this.$store
+        .dispatch("register", data)
+        .then(() => this.$router.push("dashboard"))
+        .catch(err => console.log(err));
+      // RegisterDataService.create(data)
+      //   .then(response => {
+      //     this.$router.push("dashboard");
+      //     console.log(response.data);
+      //   })
+      //   .catch(error => {
+      //     if (error.response.data.errors) {
+      //       console.log("There were some errors");
 
-            let entries = Object.entries(error.response.data.errors);
-            for (const [value] of Object.entries(entries)) {
-              // console.log(value[1].message);
-              this.errors.push(value[1].message);
-            }
-            console.log(this.errors);
+      //       let entries = Object.entries(error.response.data.errors);
+      //       for (const [value] of Object.entries(entries)) {
+      //         // console.log(value[1].message);
+      //         this.errors.push(value[1].message);
+      //       }
+      //       console.log(this.errors);
 
-            // TODO: Display the error messages to front end
-          }
+      //       // TODO: Display the error messages to front end
+      //     }
 
-          // let stringErrors = JSON.stringify(error.response.data.errors);
-          // let jsonErrors = JSON.parse(stringErrors);
-          // console.log(stringErrors);
-          // console.log(typeof errors);
-          // console.log(error.response.data);
-        });
+      //     // let stringErrors = JSON.stringify(error.response.data.errors);
+      //     // let jsonErrors = JSON.parse(stringErrors);
+      //     // console.log(stringErrors);
+      //     // console.log(typeof errors);
+      //     // console.log(error.response.data);
+      //   });
     },
 
     // Test Method to console.log
