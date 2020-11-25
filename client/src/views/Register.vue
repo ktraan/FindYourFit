@@ -2,7 +2,7 @@
   <v-form ref="form" v-model="valid" lazy-validation>
     <v-container>
       <v-row class="d-flex justify-center mt-10">
-        <v-card class="pa-5" width="730" height="500" elevation="12">
+        <v-card class="pa-5 mb-10" width="730" height="500" elevation="12">
           <v-row class="d-flex justify-center">
             <div class="text-h4 mt-5">Register to Find Your Fit!</div>
           </v-row>
@@ -121,7 +121,9 @@
               <v-btn class="text-capitalize text-h6" text href="/"
                 >Cancel
               </v-btn>
-
+              <v-btn class="text-capitalize text-h6" text @click="reset"
+                >Clear
+              </v-btn>
               <v-btn
                 :disabled="!valid"
                 class=" text-capitalize text-h6 ml-3 mr-5"
@@ -139,8 +141,6 @@
 </template>
 
 <script>
-// import RegisterDataService from "../services/RegisterDataService";
-
 export default {
   name: "register",
   data: () => {
@@ -210,7 +210,7 @@ export default {
         .dispatch("register", data)
         .then(() => this.$router.push("dashboard"))
         .catch(err => {
-          if (!err) {
+          if (err) {
             this.$router.push("register");
           }
         });

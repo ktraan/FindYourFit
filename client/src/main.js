@@ -4,6 +4,7 @@ import router from "./router";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 import store from "../store";
+import vuelidate from "./plugins/vuelidate";
 
 Vue.config.productionTip = false;
 
@@ -16,6 +17,7 @@ if (token) {
 new Vue({
   router,
   vuetify,
+  vuelidate,
   store,
   render: h => h(App)
 }).$mount("#app");

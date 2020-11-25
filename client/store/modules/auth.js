@@ -4,7 +4,8 @@ const state = {
   status: "",
   // token: localStorage.getItem("token") || "",
   user: {},
-  loggedIn: false
+  loggedIn: false,
+  error: ""
 };
 
 const getters = {
@@ -34,6 +35,23 @@ const actions = {
       return null;
     }
   },
+  async login({ commit }, user) {
+    commit("auth_request");
+    try {
+      const res = await axios.post("http://localhost:3000/login", user);
+      if (res.status === 200) {
+        const user = res.data;
+        commit("auth_success", user);
+      } else {
+        commit("auth_error", res.data);
+      }
+      return res;
+    } catch (error) {
+      console.log(error);
+      commit("auth_error", error.response);
+      return null;
+    }
+  },
 
   async logout({ commit }) {
     commit("logout");
@@ -51,8 +69,8 @@ const mutations = {
     state.loggedIn = true;
     // state.token = payload.token;
   },
-  auth_error(state) {
-    state.status = "error";
+  auth_error(state, payload) {
+    state.status = payload.data.message;
   },
   logout(state) {
     state.status = "";

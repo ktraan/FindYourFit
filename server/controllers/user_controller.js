@@ -43,7 +43,7 @@ login = async (req, res) => {
     else if(!bcrypt.compareSync(req.body.password, user.password)) {
       res.status(400).json({ message: "The password is invalid" });
     } else (
-      res.status(200).json({ message: "Email and Password are correct!"})  
+      res.status(200).json(user)  
     )
     
   } catch (error) {
