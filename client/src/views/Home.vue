@@ -19,8 +19,10 @@
       <v-img src="../../public/stairs.jpg" max-height="800"></v-img>
     </v-row>
 
-    <v-row>
-      <v-img src="../../public/gym.jpg" max-width="950"></v-img>
+    <v-row class="d-md-flex">
+      <v-col cols="6" class="pa-0">
+        <v-img class="" src="../../public/gym.jpg" max-width="950"></v-img>
+      </v-col>
 
       <v-col cols="6" class="mt-auto mb-auto">
         <h2 class="description-text ml-5 pa-5 font-weight-regular">
@@ -37,7 +39,7 @@
 export default {
   name: "Home",
 
-  components: {}
+  components: {},
 };
 </script>
 
@@ -51,6 +53,6 @@ export default {
   width: 1000px;
 }
 .description-text {
-  font-size: 35px;
+  font-size: 40px;
 }
 </style>
