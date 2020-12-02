@@ -112,33 +112,37 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    async login() {
+    login() {
       this.$v.$touch();
-      try {
-        let data = {
-          email: this.email,
-          password: this.password
-        };
-        const res = await this.login(data);
-        if (res) {
-          if (res.status === 200 || res.status === 201) {
-            this.$router.push("dashboard");
-          } else {
-            this.error = "There was problem logging in. Please try again.";
-          }
-        }
-      } catch (error) {
-        this.error = "There was a problem loggin in. Please try again.";
-      }
+      // try {
+      //   let data = {
+      //     email: this.email,
+      //     password: this.password
+      //   };
+      //   const res = await this.login(data);
+      //   if (res) {
+      //     if (res.status === 200 || res.status === 201) {
+      //       this.$router.push("dashboard");
+      //     } else {
+      //       this.error = "There was problem logging in. Please try again.";
+      //     }
+      //   }
+      // } catch (error) {
+      //   this.error = "There was a problem loggin in. Please try again.";
+      // }
 
-      // this.$store
-      //   .dispatch("login", data)
-      //   .then(() => {
-      //     this.$router.push("dashboard");
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
+      let data = {
+        email: this.email,
+        password: this.password
+      };
+      this.$store
+        .dispatch("login", data)
+        .then(() => {
+          this.$router.push("dashboard");
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };
