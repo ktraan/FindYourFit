@@ -141,6 +141,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import axios from "axios";
+
 export default {
   name: "register",
   data: () => {
@@ -186,6 +189,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions("auth", ["register"]),
     submit() {
       this.$refs.form.validate();
     },
@@ -206,6 +210,7 @@ export default {
         location: this.user.location,
         birthday: this.user.birthday
       };
+
       this.$store
         .dispatch("register", data)
         .then(() => this.$router.push("dashboard"))
@@ -214,41 +219,16 @@ export default {
             this.$router.push("register");
           }
         });
-      // RegisterDataService.create(data)
-      //   .then(response => {
-      //     this.$router.push("dashboard");
-      //     console.log(response.data);
-      //   })
-      //   .catch(error => {
-      //     if (error.response.data.errors) {
-      //       console.log("There were some errors");
-
-      //       let entries = Object.entries(error.response.data.errors);
-      //       for (const [value] of Object.entries(entries)) {
-      //         // console.log(value[1].message);
-      //         this.errors.push(value[1].message);
-      //       }
-      //       console.log(this.errors);
-
-      //       // TODO: Display the error messages to front end
-      //     }
-
-      //     // let stringErrors = JSON.stringify(error.response.data.errors);
-      //     // let jsonErrors = JSON.parse(stringErrors);
-      //     // console.log(stringErrors);
-      //     // console.log(typeof errors);
-      //     // console.log(error.response.data);
-      //   });
     },
 
     // Test Method to console.log
     onClickLogger() {
-      let data = {
-        firstName: this.user.firstName,
-        gender2: this.genderGroup,
-        cP: this.confirmedPassword
-      };
-      console.log(data);
+      // let data = {
+      //   firstName: this.user.firstName,
+      //   gender2: this.genderGroup,
+      //   cP: this.confirmedPassword
+      // };
+      console.log(this.$state);
     }
   },
   computed: {}

@@ -1,8 +1,13 @@
 <template>
   <v-container>
+    <v-row class="d-flex justify-center">
+      <v-alert v-if="error" type="error" class="text-center mt-5" width="700">
+        {{ error }}
+      </v-alert>
+    </v-row>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-row class="justify-center mb-10">
-        <v-card class="pa-5 mt-10 " width="730" height="500" elevation="12">
+        <v-card class="pa-5 mt-5 " width="730" height="500" elevation="12">
           <v-row class="justify-center">
             <div class="text-h4 d-flex justify-center mt-5">Login</div>
           </v-row>
@@ -62,12 +67,12 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 export default {
   name: "login",
   data() {
     return {
-      errors: [],
+      error: "",
       email: "",
       password: "",
 
@@ -84,6 +89,9 @@ export default {
   },
   computed: {
     // ...mapGetters("auth", ["status"]),
+    userIsLoggedIn: function() {
+      return this.$store.state.isLoggedIn;
+    },
     emailErrors() {
       const errors = [];
       if (this.$v.email.$dirty) {
@@ -100,23 +108,37 @@ export default {
     }
   },
   methods: {
+    ...mapActions("auth", ["login"]),
     reset() {
       this.$refs.form.reset();
     },
-    login() {
+    async login() {
       this.$v.$touch();
-      let data = {
-        email: this.email,
-        password: this.password
-      };
-      this.$store
-        .dispatch("login", data)
-        .then(() => {
-          this.$router.push("dashboard");
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      try {
+        let data = {
+          email: this.email,
+          password: this.password
+        };
+        const res = await this.login(data);
+        if (res) {
+          if (res.status === 200 || res.status === 201) {
+            this.$router.push("dashboard");
+          } else {
+            this.error = "There was problem logging in. Please try again.";
+          }
+        }
+      } catch (error) {
+        this.error = "There was a problem loggin in. Please try again.";
+      }
+
+      // this.$store
+      //   .dispatch("login", data)
+      //   .then(() => {
+      //     this.$router.push("dashboard");
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
     }
   }
 };
