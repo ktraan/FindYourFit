@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
 export default {
@@ -137,11 +138,12 @@ export default {
       };
       this.$store
         .dispatch("login", data)
-        .then(() => {
-          this.$router.push("dashboard");
-        })
+        .then(() => {})
         .catch(err => {
           console.log(err);
+        })
+        .then(() => {
+          this.$router.push("dashboard");
         });
     }
   }

@@ -30,7 +30,6 @@ const actions = {
       }
       return res;
     } catch (error) {
-      console.log(error);
       commit("auth_error", error.response);
       return null;
     }
@@ -47,7 +46,6 @@ const actions = {
       }
       return res;
     } catch (error) {
-      console.log(error);
       commit("auth_error", error.response);
       return null;
     }

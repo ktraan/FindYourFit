@@ -1,17 +1,35 @@
 <template>
   <v-container>
-    <v-row class=""
-      ><v-carousel
+    <v-row class="">
+      <v-carousel
         class=""
         cycle
         hide-delimiter-background
         hide-delimiters
         dark
         height="800"
-        interval="10000"
+        interval="1000000000"
       >
+        <!-- keep interval at 15sec -->
         <v-carousel-item>
-          <v-img src="../../public/slide1.jpg"></v-img>
+          <v-img src="../../public/slide1.jpg">
+            <v-row class="mt-16" justify="center" align="center">
+              <div class="white--text text-h2 font-weight-medium">
+                Check out all of the current listings!
+              </div>
+            </v-row>
+            <v-row class="justify-center">
+              <v-btn
+                color="white"
+                width="200"
+                height="60"
+                elevation="10"
+                class="text-capitalize black--text text-h6 mt-5"
+              >
+                View Listings
+              </v-btn>
+            </v-row>
+          </v-img>
         </v-carousel-item>
         <v-carousel-item>
           <v-img src="../../public/slide2.jpg"></v-img>
