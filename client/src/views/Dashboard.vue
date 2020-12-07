@@ -19,29 +19,31 @@
               </div>
             </v-row>
             <v-row class="justify-center">
-              <v-btn
-                color="white"
-                width="200"
-                height="60"
-                elevation="10"
-                class="text-capitalize black--text text-h6 mt-5"
+              <router-link to="/listings" class="text-decoration-none">
+                <v-btn
+                  color="white"
+                  width="200"
+                  height="60"
+                  elevation="10"
+                  class="text-capitalize black--text text-h6 mt-5"
+                >
+                  View Listings
+                </v-btn></router-link
               >
-                View Listings
-              </v-btn>
             </v-row>
           </v-img>
         </v-carousel-item>
         <v-carousel-item>
-          <v-img src="../../public/slide2.jpg"></v-img>
+          <v-img src="../../public/slide2.jpg" height="100%"></v-img>
         </v-carousel-item>
         <v-carousel-item>
-          <v-img src="../../public/slide3.jpg"></v-img>
+          <v-img src="../../public/slide3.jpg" height="100%"></v-img>
         </v-carousel-item>
         <v-carousel-item>
-          <v-img src="../../public/slide4.jpg"></v-img>
+          <v-img src="../../public/slide4.jpg" height="100%"></v-img>
         </v-carousel-item>
         <v-carousel-item>
-          <v-img src="../../public/slide5.jpg"></v-img>
+          <v-img src="../../public/slide5.jpg" height="100%"></v-img>
         </v-carousel-item> </v-carousel
     ></v-row>
   </v-container>

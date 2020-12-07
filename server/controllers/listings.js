@@ -43,3 +43,9 @@ const createListing = (req, res) => {
         res.status(500).json({message: "Problem creating listing"});
     })
 }
+
+module.exports = {
+    getAllListings,
+    getSingleListing,
+    createListing,
+}
