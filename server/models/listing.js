@@ -13,12 +13,14 @@ const listingSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Listing summary is required']
     },
-    experience: {
-        type: String,
+    yearsExperience: {
+        type: Number,
     },
+    // Education can be degrees, diplomas, certificates
     education: {
         type: String,
     },
+    // Types can be Personal Training, Nutritionist, Health & Wellness
     listingType: {
         type: String,
         required: [true, "Type of listing is required"]
@@ -32,3 +34,5 @@ const listingSchema = new mongoose.Schema({
     }
 
 })
+
+module.exports = mongoose.model("Listing", listingSchema)

@@ -17,6 +17,7 @@ const morgan = require("morgan");
 // Routes
 const registerRouter = require("./routes/register");
 const loginRouter = require('./routes/login');
+const listingRouter = require('./routes/listing');
 
 const initializePassport = require("./passport-config");
 initializePassport(
@@ -68,6 +69,7 @@ db.once("open", () => {
 // Defining route middleware
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
+app.use('/listing', listingRouter)
 
 // Listening to port
 app.listen(port);

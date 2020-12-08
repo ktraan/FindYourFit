@@ -1,4 +1,29 @@
-// Get All Users
+GET http://localhost:3000/listing
+
+###
+
+GET http://localhost:3000/listing/5fcff355b23c7b234c48795h
+
+###
+
+POST http://localhost:3000/listing
+Content-Type: application/json
+
+{
+    "creator": "5fce617c46f2686b505e5b2c",
+    "occupation": "Personal Trainer",
+    "summary": "I am a personal trainer based in Edmonton, AB. My goal is to help others find and pursue their fitness goals!",
+    "yearsExperience": 5,
+    "education": "Personal Training Diploma at NAIT",
+    "listingType": "Personal Training",
+    "reviews": ["This guy is great", "10/10 would reccomend"]
+}
+
+###
+
+
+
+// GET all users
 GET http://localhost:3000/register
 
 ###
