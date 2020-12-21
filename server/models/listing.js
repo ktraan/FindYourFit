@@ -18,7 +18,8 @@ const listingSchema = new mongoose.Schema({
     },
     // Education can be degrees, diplomas, certificates
     education: {
-        type: String,
+        type: Array,
+        default: ["None"]
     },
     // Types can be Personal Training, Nutritionist, Health & Wellness
     listingType: {
@@ -28,6 +29,9 @@ const listingSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    socialMediaLinks: {
+        type: Array
     },
     reviews: {
         type: Array
