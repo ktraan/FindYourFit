@@ -4,25 +4,25 @@
       <v-img src="../../public/whitelotus.png" max-width="40"></v-img>
     </router-link>
 
-    <v-toolbar-title class="ml-4 text-h5 white--text"
+    <v-toolbar-title class="ml-4 text-h5 white--text mt-1 font-weight-light"
       >Find Your Fit</v-toolbar-title
     >
     <v-row class="justify-end">
       <router-link
         to="/dashboard"
-        class="text-decoration-none text-capitalize text-h6 white--text mt-2 mr-7"
+        class="text-decoration-none text-capitalize text-h6 white--text mt-3 mr-7  font-weight-light"
       >
         Home
       </router-link>
       <router-link
         to="/listings"
-        class="text-decoration-none text-capitalize text-h6 white--text mt-2 mr-7"
+        class="text-decoration-none text-capitalize text-h6 white--text mt-3 mr-7 font-weight-light"
       >
         Listings
       </router-link>
       <router-link
         to="/createListing"
-        class="text-decoration-none text-capitalize text-h6 white--text mt-2 mr-7"
+        class="text-decoration-none text-capitalize text-h6 white--text mt-3 mr-7 font-weight-light"
       >
         Create Listing
       </router-link>
@@ -37,7 +37,7 @@
             elevation="0"
             fab
           >
-            <v-icon x-large color="white">mdi-account-circle-outline</v-icon>
+            <v-icon x-large color="white">mdi-account-cog</v-icon>
           </v-btn>
         </template>
         <v-list>

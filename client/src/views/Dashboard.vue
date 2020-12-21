@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="container" fluid>
     <v-row class="">
       <v-carousel
         class=""
@@ -63,3 +63,5 @@ export default {
   }
 };
 </script>
+
+<style></style>
