@@ -12,7 +12,7 @@
       >
         <!-- keep interval at 15sec -->
         <v-carousel-item>
-          <v-img src="../../public/slide1.jpg">
+          <v-img src="../../public/slide1.jpg" class="d-sm-flex" height="100%">
             <v-row class="mt-16" justify="center" align="center">
               <div class="white--text text-h2 font-weight-medium">
                 Check out all of the current listings!

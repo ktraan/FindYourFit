@@ -7,9 +7,9 @@
       </h1>
     </v-row>
     <v-divider></v-divider>
-    <v-row class="justify-center">
+    <v-row class="d-sm-flex justify-center">
       <v-col cols="6" class="mt-auto mb-auto">
-        <div class="description-text pa-10 font-weight-medium text-center">
+        <div class="description-text mt-5 mb-5 font-weight-medium text-center">
           Finding the right fitness expert can be difficult sometimes. Life
           often gets in the way when it comes to our health. Our mission is to
           help you find a health or fitness professional to meet your goals
@@ -19,9 +19,9 @@
       <v-img src="../../public/stairs.jpg" max-height="800"></v-img>
     </v-row>
 
-    <v-row class="d-md-flex">
+    <v-row class="d-sm-flex">
       <v-col cols="6" class="pa-0">
-        <v-img class="" src="../../public/gym.jpg" max-width="950"></v-img>
+        <v-img class="" src="../../public/gym.jpg"></v-img>
       </v-col>
 
       <v-col cols="6" class="mt-auto mb-auto">
