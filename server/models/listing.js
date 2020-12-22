@@ -30,8 +30,14 @@ const listingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    socialMediaLinks: {
-        type: Array
+    facebookLink: {
+        type: String
+    },
+    instagramLink: {
+        type: String
+    },
+    youtubeLink: {
+        type: String
     },
     reviews: {
         type: Array

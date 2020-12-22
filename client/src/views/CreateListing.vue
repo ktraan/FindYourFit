@@ -2,11 +2,16 @@
   <v-form>
     <v-container class="container" fluid>
       <v-row justify="center">
-        <div class="text-h4 text-sm-h3 text-center font-weight-light mt-5 mb-5">
-          Lets get started by creating a listing! Enter the information below.
+        <div class="text-h4 text-sm-h3 text-center font-weight-light mt-5 mb-2">
+          Get started by creating a listing!
         </div>
       </v-row>
-      <v-row class="justify-center mt-5">
+      <v-row justify="center">
+        <div class="text-h4 text-sm-h3 text-center font-weight-light ">
+          Enter your information below.
+        </div>
+      </v-row>
+      <v-row class="justify-center mt-5 mb-5">
         <v-card width="1200" height="600" elevation="3" tile>
           <v-row>
             <v-col cols="4">
@@ -33,7 +38,7 @@
             </v-col>
 
             <v-col cols="4">
-              <div class="text-h3 text-sm-h2 mb-5 mt-2 ml-n1">
+              <div class="text-h4 text-sm-h5 mb-5 mt-2 ml-n1">
                 {{ user.firstName + " " + user.lastName }}
               </div>
               <v-text-field
@@ -85,6 +90,69 @@
                 color="amber darken-2"
               ></v-textarea>
             </v-col>
+
+            <v-col cols="3">
+              <v-row>
+                <v-checkbox
+                  v-model="socialsCheck"
+                  class="text-left"
+                  label="Would you like to add your social media accounts?"
+                  color="amber darken-2"
+                >
+                </v-checkbox>
+              </v-row>
+              <v-row v-if="socialsCheck">
+                <v-text-field
+                  v-model="facebookField"
+                  name="facebookField"
+                  label="Facebook"
+                  prepend-icon="mdi-facebook"
+                >
+                </v-text-field>
+                <v-text-field
+                  v-model="instagramField"
+                  name="instagramField"
+                  label="Instagram"
+                  prepend-icon="mdi-instagram"
+                >
+                </v-text-field>
+                <v-text-field
+                  v-model="youtubeField"
+                  name="youtubeField"
+                  label="YouTube"
+                  prepend-icon="mdi-youtube"
+                >
+                </v-text-field>
+                <v-text-field
+                  v-model="twitterField"
+                  name="twitterField"
+                  label="Twitter"
+                  prepend-icon="mdi-twitter"
+                >
+                </v-text-field>
+              </v-row>
+              <v-spacer class="mt-16"></v-spacer>
+
+              <v-row class="">
+                <v-col class=""> </v-col>
+              </v-row>
+            </v-col>
+            <v-row class="justify-end mt-n16 ml-n16"
+              ><v-btn
+                class="mt-auto  text-capitalize mr-6 text-h5"
+                color="grey lighten-1"
+                large
+                >Clear</v-btn
+              >
+              <v-btn
+                class="mt-auto  text-capitalize mr-12 text-h5"
+                color="amber darken-2"
+                width="200"
+                large
+                @click="submit"
+                >Submit</v-btn
+              ></v-row
+            >
           </v-row>
         </v-card>
         <v-btn @click="logger">Logger</v-btn>
@@ -99,6 +167,17 @@ import { mapGetters } from "vuex";
 export default {
   data: () => {
     return {
+      occupation: "",
+      yearsExperience: "",
+      education: [],
+      listingType: "",
+      socialsCheck: false,
+      summary: "",
+      facebookField: "",
+      instagramField: "",
+      youtubeField: "",
+      snapchatField: "",
+
       fileInput: "",
       profileImage:
         "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
@@ -120,8 +199,10 @@ export default {
     changeImage() {
       this.fileInput = this.profileImage;
     },
+    submit() {},
     logger() {
-      console.log(this.user);
+      // console.log(this.user);
+      console.log(this.socialsCheck);
       // console.log(this.fileInput);
       // console.log(this.profileImage);
     }
