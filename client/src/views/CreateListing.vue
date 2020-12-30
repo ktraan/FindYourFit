@@ -18,20 +18,29 @@
               <v-spacer class=""></v-spacer>
 
               <v-row class="d-flex ml-10 mt-16">
-                <v-img
-                  src="../../public/profile.png"
-                  max-width="250"
-                  class="ml-10 mt-10"
-                >
+                <v-img :src="image" max-width="250" class="ml-10 mt-10">
                 </v-img>
-                <v-btn class="mt-auto ml-n5" icon>
+                <!-- <v-btn class="mt-auto ml-n5" icon @click="uploadImage">
                   <v-icon x-large color="grey darken-4" class=""
                     >mdi-camera</v-icon
                   >
-                </v-btn>
+                </v-btn> -->
+              </v-row>
+              <v-row class="">
+                <v-col cols="11"
+                  ><v-file-input
+                    class="ml-5 mt-2"
+                    color="amber darken-2"
+                    dense
+                    show-size
+                    accept="image/*"
+                    label="Attach Image"
+                    @change="changeImage"
+                  ></v-file-input
+                ></v-col>
               </v-row>
               <v-row class="d-flex ml-2">
-                <div class="text-h5 font-weight-light text-center mt-8 ml-16">
+                <div class="text-h5 font-weight-light text-center ml-12">
                   Upload your profile picture
                 </div>
               </v-row>
@@ -42,7 +51,7 @@
                 {{ user.firstName + " " + user.lastName }}
               </div>
               <v-text-field
-                v-model="occupation"
+                v-model="listing.occupation"
                 placeholder="Enter your occupation"
                 label="Occupation"
                 name="occupation"
@@ -52,7 +61,7 @@
               </v-text-field>
 
               <v-text-field
-                v-model="yearsExperience"
+                v-model="listing.yearsExperience"
                 class="mt-2"
                 label="Experience"
                 name="yearsExperience"
@@ -61,12 +70,12 @@
               >
               </v-text-field>
               <v-combobox
-                v-model="education"
+                v-model="listing.education"
                 chips
                 deletable-chips
                 multiple
                 clearable
-                placeholder="Type in your education experience"
+                placeholder="Type and press enter..."
                 name="education"
                 label="Education"
                 item-color="amber darken-2"
@@ -74,7 +83,7 @@
               >
               </v-combobox>
               <v-select
-                v-model="listingType"
+                v-model="listing.listingType"
                 label="Listing Type"
                 placeholder="Choose the type of listing"
                 :items="listingTypeItems"
@@ -83,7 +92,7 @@
               </v-select>
               <!-- Max 300 char -->
               <v-textarea
-                v-model="summary"
+                v-model="listing.summary"
                 label="Summary"
                 name="summary"
                 placeholder="Enter a short summary about what you are all about! "
@@ -106,31 +115,35 @@
               </v-row>
               <v-row v-if="socialsCheck">
                 <v-text-field
-                  v-model="facebookField"
+                  v-model="listing.facebookField"
                   name="facebookField"
                   label="Facebook"
                   prepend-icon="mdi-facebook"
+                  color="amber darken-2"
                 >
                 </v-text-field>
                 <v-text-field
-                  v-model="instagramField"
+                  v-model="listing.instagramField"
                   name="instagramField"
                   label="Instagram"
                   prepend-icon="mdi-instagram"
+                  color="amber darken-2"
                 >
                 </v-text-field>
                 <v-text-field
-                  v-model="youtubeField"
+                  v-model="listing.youtubeField"
                   name="youtubeField"
                   label="YouTube"
                   prepend-icon="mdi-youtube"
+                  color="amber darken-2"
                 >
                 </v-text-field>
                 <v-text-field
-                  v-model="twitterField"
+                  v-model="listing.twitterField"
                   name="twitterField"
                   label="Twitter"
                   prepend-icon="mdi-twitter"
+                  color="amber darken-2"
                 >
                 </v-text-field>
               </v-row>
@@ -170,20 +183,21 @@ import { mapGetters } from "vuex";
 export default {
   data: () => {
     return {
-      occupation: "",
-      yearsExperience: "",
-      education: [],
-      listingType: "",
+      image: "",
       socialsCheck: false,
-      summary: "",
-      facebookField: "",
-      instagramField: "",
-      youtubeField: "",
-      snapchatField: "",
+      listing: {
+        occupation: "",
+        yearsExperience: "",
+        education: [],
+        listingType: "",
+        summary: "",
+        facebookField: "",
+        instagramField: "",
+        youtubeField: "",
+        twitterField: ""
+      },
 
       fileInput: "",
-      profileImage:
-        "https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
 
       listingTypeItems: [
         "Personal Trainer",
@@ -199,18 +213,23 @@ export default {
     ...mapGetters(["user"])
   },
   methods: {
-    changeImage() {
-      this.fileInput = this.profileImage;
+    changeImage(file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.image = reader.result;
+      };
     },
     submit() {},
     logger() {
-      // console.log(this.user);
-      console.log(this.socialsCheck);
-      // console.log(this.fileInput);
-      // console.log(this.profileImage);
+      console.log(this.image);
+      console.log(this.listing);
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.fileInput {
+}
+</style>

@@ -6,7 +6,9 @@
           <v-img src="../../public/whitelotus.png" class="ml-5" width="100">
           </v-img>
         </router-link>
-        <v-toolbar-title class="h1text text-h1 ml-8">
+        <v-toolbar-title
+          class="h1text text-h3 text-sm-h2 text-md-h1 ml-8 font-weight-light"
+        >
           Find Your Fit
         </v-toolbar-title>
         <!-- <v-row justify="end" class="mr-10"> -->
