@@ -39,6 +39,10 @@ const listingSchema = new mongoose.Schema({
     youtubeLink: {
         type: String
     },
+    twitterLink: {
+        type: String
+    },
+
     reviews: {
         type: Array
     }

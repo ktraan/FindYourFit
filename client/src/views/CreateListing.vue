@@ -92,6 +92,9 @@
             </v-col>
 
             <v-col cols="3">
+              <div>
+                Enter the links to your profile
+              </div>
               <v-row>
                 <v-checkbox
                   v-model="socialsCheck"
