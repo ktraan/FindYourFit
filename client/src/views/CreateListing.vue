@@ -12,7 +12,7 @@
         </div>
       </v-row>
       <v-row class="justify-center mt-5 mb-5">
-        <v-card width="1200" height="600" elevation="3" tile>
+        <v-card width="1200" height="620" elevation="3" tile>
           <v-row>
             <v-col cols="4">
               <v-spacer class=""></v-spacer>
@@ -104,16 +104,32 @@
               <div>
                 Enter the links to your profile
               </div>
-              <v-row>
-                <v-checkbox
-                  v-model="socialsCheck"
-                  class="text-left"
-                  label="Would you like to add your social media accounts?"
+
+              <v-row class="mt-3">
+                <v-text-field
+                  v-model="listing.phone"
+                  name="phone"
+                  label="Phone"
+                  prepend-icon="mdi-phone"
                   color="amber darken-2"
                 >
-                </v-checkbox>
-              </v-row>
-              <v-row v-if="socialsCheck">
+                </v-text-field>
+                <v-text-field
+                  v-model="listing.email"
+                  name="email"
+                  label="Email"
+                  prepend-icon="mdi-email"
+                  color="amber darken-2"
+                >
+                </v-text-field>
+                <v-text-field
+                  v-model="listing.websitye"
+                  name="website"
+                  label="Personal Website"
+                  prepend-icon="mdi-web"
+                  color="amber darken-2"
+                >
+                </v-text-field>
                 <v-text-field
                   v-model="listing.facebookField"
                   name="facebookField"
@@ -147,13 +163,10 @@
                 >
                 </v-text-field>
               </v-row>
-              <v-spacer class="mt-16"></v-spacer>
 
-              <v-row class="">
-                <v-col class=""> </v-col>
-              </v-row>
+              <!-- <v-spacer class="mt-16"></v-spacer> -->
             </v-col>
-            <v-row class="justify-end mt-n16 ml-n16"
+            <v-row class="justify-end  ml-n16"
               ><v-btn
                 class="mt-auto  text-capitalize mr-6 text-h5"
                 color="grey lighten-1"
@@ -179,18 +192,21 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   data: () => {
     return {
       image: "",
-      socialsCheck: false,
       listing: {
         occupation: "",
         yearsExperience: "",
         education: [],
         listingType: "",
         summary: "",
+        phone: "",
+        email: "",
+        website: "",
         facebookField: "",
         instagramField: "",
         youtubeField: "",
@@ -220,7 +236,39 @@ export default {
         this.image = reader.result;
       };
     },
-    submit() {},
+    submit() {
+      const LISTING_ENDPOINT = "http://localhost/3000/listing";
+      axios
+        .post(LISTING_ENDPOINT, {
+          creator: `${this.user.firstName} ${this.user.lastName}`,
+          occupation: this.occupation,
+          summary: this.summary,
+          yearsExperience: this.yearsExperience,
+          education: this.education,
+          listingType: this.listingType,
+          phone: this.phone,
+          email: this.email,
+          website: this.website,
+          facebookLink: this.facebookField,
+          instagramLink: this.instagramField,
+          youtubeLink: this.youtubeField,
+          twitterLink: this.twitterField,
+          profilePicture: this.profilePicture
+        })
+        .then(response => {
+          console.log(response);
+          if (response.status === 201 || response.status === 200) {
+            this.$router.push("listings");
+          } else {
+            console.log(
+              "There was an error creating the listing. Please try again"
+            );
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     logger() {
       console.log(this.image);
       console.log(this.listing);

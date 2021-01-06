@@ -5,6 +5,18 @@ const listingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    phone: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    website: {
+        type: String,
+        required: true
+    },
     occupation: {
         type: String,
         required: [true, 'Occupation is required']
@@ -42,9 +54,11 @@ const listingSchema = new mongoose.Schema({
     twitterLink: {
         type: String
     },
-
     reviews: {
         type: Array
+    },
+    profilePicture: {
+        type: String, 
     }
 
 })
