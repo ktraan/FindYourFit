@@ -11,6 +11,13 @@
           Enter your information below.
         </div>
       </v-row>
+
+      <v-row class="justify-center">
+        <v-alert v-if="errors" class="text-center" dense outlined type="error">
+          {{ errors }}
+        </v-alert>
+      </v-row>
+
       <v-row class="justify-center mt-5 mb-5">
         <v-card width="1200" height="620" elevation="3" tile>
           <v-row>
@@ -52,39 +59,19 @@
               </div>
               <v-text-field
                 v-model="listing.occupation"
+                :error-messages="occupationErrors"
+                @blur="$v.listing.occupation.$touch()"
                 placeholder="Enter your occupation"
-                label="Occupation"
                 name="occupation"
                 color="amber darken-2"
                 prepend-icon=""
               >
               </v-text-field>
 
-              <v-text-field
-                v-model="listing.yearsExperience"
-                class="mt-2"
-                label="Experience"
-                name="yearsExperience"
-                placeholder="Years of experience"
-                color="amber darken-2"
-              >
-              </v-text-field>
-              <v-combobox
-                v-model="listing.education"
-                chips
-                deletable-chips
-                multiple
-                clearable
-                placeholder="Type and press enter..."
-                name="education"
-                label="Education"
-                item-color="amber darken-2"
-                color="amber darken-2"
-              >
-              </v-combobox>
               <v-select
                 v-model="listing.listingType"
-                label="Listing Type"
+                :error-messages="listingTypeErrors"
+                @blur="$v.listing.listingType.$touch()"
                 placeholder="Choose the type of listing"
                 :items="listingTypeItems"
                 color="amber darken-2"
@@ -93,21 +80,48 @@
               <!-- Max 300 char -->
               <v-textarea
                 v-model="listing.summary"
-                label="Summary"
+                :error-messages="summaryErrors"
+                @blur="$v.listing.summary.$touch()"
                 name="summary"
                 placeholder="Enter a short summary about what you are all about! "
                 color="amber darken-2"
               ></v-textarea>
+
+              <v-combobox
+                v-model="listing.education"
+                chips
+                deletable-chips
+                multiple
+                clearable
+                placeholder="Type and press enter..."
+                hint="younerd"
+                name="education"
+                label="Education"
+                item-color="amber darken-2"
+                color="amber darken-2"
+              >
+              </v-combobox>
+
+              <v-text-field
+                v-model="listing.yearsExperience"
+                class="mt-2"
+                name="yearsExperience"
+                placeholder="Years of experience"
+                color="amber darken-2"
+              >
+              </v-text-field>
             </v-col>
 
             <v-col cols="3">
-              <div>
-                Enter the links to your profile
+              <div class="text-h5 mt-1">
+                Contact and Socials
               </div>
 
-              <v-row class="mt-3">
+              <v-row class="">
                 <v-text-field
                   v-model="listing.phone"
+                  :error-messages="phoneErrors"
+                  @blur="$v.listing.phone.$touch()"
                   name="phone"
                   label="Phone"
                   prepend-icon="mdi-phone"
@@ -116,6 +130,8 @@
                 </v-text-field>
                 <v-text-field
                   v-model="listing.email"
+                  :error-messages="emailErrors"
+                  @blur="$v.listing.email.$touch()"
                   name="email"
                   label="Email"
                   prepend-icon="mdi-email"
@@ -123,7 +139,7 @@
                 >
                 </v-text-field>
                 <v-text-field
-                  v-model="listing.websitye"
+                  v-model="listing.website"
                   name="website"
                   label="Personal Website"
                   prepend-icon="mdi-web"
@@ -171,6 +187,7 @@
                 class="mt-auto  text-capitalize mr-6 text-h5"
                 color="grey lighten-1"
                 large
+                @click="clear"
                 >Clear</v-btn
               >
               <v-btn
@@ -191,12 +208,15 @@
 </template>
 
 <script>
+import { required, minLength, maxLength } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
   data: () => {
     return {
+      errors: "",
+
       image: "",
       listing: {
         occupation: "",
@@ -225,8 +245,68 @@ export default {
       ]
     };
   },
+  validations: {
+    listing: {
+      phone: {
+        required,
+        minLength: minLength(7)
+      },
+      email: {
+        required
+      },
+      occupation: {
+        required
+      },
+      summary: {
+        required,
+        maxLength: maxLength(250)
+      },
+      listingType: {
+        required
+      }
+    }
+  },
   computed: {
-    ...mapGetters(["user"])
+    ...mapGetters(["user"]),
+    phoneErrors() {
+      const errors = [];
+      if (this.$v.listing.phone.$dirty) {
+        if (!this.$v.listing.phone.required)
+          errors.push("Phone Number is required.");
+      }
+      return errors;
+    },
+    emailErrors() {
+      const errors = [];
+      if (this.$v.listing.email.$dirty) {
+        if (!this.$v.listing.email.required) errors.push("Email is required.");
+      }
+      return errors;
+    },
+    listingTypeErrors() {
+      const errors = [];
+      if (this.$v.listing.listingType.$dirty) {
+        if (!this.$v.listing.listingType.required)
+          errors.push("Listing Type is required.");
+      }
+      return errors;
+    },
+    summaryErrors() {
+      const errors = [];
+      if (this.$v.listing.summary.$dirty) {
+        if (!this.$v.listing.summary.required)
+          errors.push("Summary is required.");
+      }
+      return errors;
+    },
+    occupationErrors() {
+      const errors = [];
+      if (this.$v.listing.occupation.$dirty) {
+        if (!this.$v.listing.occupation.required)
+          errors.push("Occupation is required.");
+      }
+      return errors;
+    }
   },
   methods: {
     changeImage(file) {
@@ -235,6 +315,9 @@ export default {
       reader.onload = () => {
         this.image = reader.result;
       };
+    },
+    clear() {
+      this.$v.$touch();
     },
     submit() {
       const LISTING_ENDPOINT = "http://localhost/3000/listing";
@@ -277,7 +360,4 @@ export default {
 };
 </script>
 
-<style>
-.fileInput {
-}
-</style>
+<style></style>

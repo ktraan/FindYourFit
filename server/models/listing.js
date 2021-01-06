@@ -15,7 +15,6 @@ const listingSchema = new mongoose.Schema({
     },
     website: {
         type: String,
-        required: true
     },
     occupation: {
         type: String,
@@ -23,7 +22,8 @@ const listingSchema = new mongoose.Schema({
     },
     summary: {
         type: String,
-        required: [true, 'Listing summary is required']
+        required: [true, 'Listing summary is required'],
+        maxlength: [250, 'Summary cannot exceed 250 characters']
     },
     yearsExperience: {
         type: Number,
