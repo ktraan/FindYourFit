@@ -3,15 +3,16 @@ const mongoose = require("mongoose");
 const listingSchema = new mongoose.Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: [true, "Creator is required"]
     },
     phone: {
         type: String,
-        required: true
+        required: [true, "Phone is required"]
     },
     email: {
         type: String,
-        required: true
+        required: [true, "Email is required"]
     },
     website: {
         type: String,
@@ -26,7 +27,7 @@ const listingSchema = new mongoose.Schema({
         maxlength: [250, 'Summary cannot exceed 250 characters']
     },
     yearsExperience: {
-        type: Number,
+        type: String,
     },
     // Education can be degrees, diplomas, certificates
     education: {

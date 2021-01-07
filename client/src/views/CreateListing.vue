@@ -7,7 +7,7 @@
           class="text-center text-h5"
           dense
           outlined
-          width="600"
+          width="700"
           type="error"
         >
           {{ errors }}
@@ -48,6 +48,7 @@
                     dense
                     show-size
                     accept="image/*"
+                    :rules="imagesize"
                     label="Attach Image"
                     @change="changeImage"
                   ></v-file-input
@@ -259,12 +260,18 @@ export default {
       },
 
       fileInput: "",
+      imagesize: [
+        value =>
+          !value ||
+          value.size < 8000000 ||
+          "Image size should be less than 8 MB"
+      ],
 
       listingTypeItems: [
-        "Personal Trainer",
-        "Athletic Trainer",
-        "Group Exercise Instructor",
-        "Yoga Instructor",
+        "Personal Training",
+        "Athletic Training",
+        "Group Exercise",
+        "Yoga",
         "Nutritionist",
         "Health & Wellness"
       ]
@@ -427,44 +434,45 @@ export default {
       if (this.$v.$invalid) {
         this.errors = "Please correct the fields before submitting.";
       } else {
-        const LISTING_ENDPOINT = "http://localhost/3000/listing";
+        const LISTING_ENDPOINT = "http://localhost:3000/listing";
         axios
           .post(LISTING_ENDPOINT, {
-            creator: `${this.user.firstName} ${this.user.lastName}`,
-            occupation: this.occupation,
-            summary: this.summary,
-            yearsExperience: this.yearsExperience,
-            education: this.education,
-            listingType: this.listingType,
-            phone: this.phone,
-            email: this.email,
-            website: this.website,
-            facebookLink: this.facebookField,
-            instagramLink: this.instagramField,
-            youtubeLink: this.youtubeField,
-            twitterLink: this.twitterField,
-            profilePicture: this.profilePicture
+            creator: this.user._id,
+            occupation: this.listing.occupation,
+            summary: this.listing.summary,
+            yearsExperience: this.listing.yearsExperience,
+            education: this.listing.education,
+            listingType: this.listing.listingType,
+            phone: this.listing.phone,
+            email: this.listing.email,
+            website: this.listing.website,
+            facebookLink: this.listing.facebookField,
+            instagramLink: this.listing.instagramField,
+            youtubeLink: this.listing.youtubeField,
+            twitterLink: this.listing.twitterField,
+            profilePicture: this.image
           })
           .then(response => {
-            console.log(response);
             if (response.status === 201 || response.status === 200) {
-              // this.$router.push("listings");
+              this.$router.push("listings");
+              // console.log(response);
               console.log(response.status);
-              console.log("Success!!!!");
             } else {
               this.errors =
                 "There was a problem creating the listing, Please try again.";
             }
           })
-          .catch(() => {
+          .catch(error => {
+            console.log(error);
             this.errors =
               "There was a problem creating the listing, Please try again.";
           });
       }
     },
     logger() {
-      console.log(this.image);
-      console.log(this.listing);
+      // console.log(this.user._id);
+      // console.log(this.image);
+      // console.log(this.listing);
     }
   }
 };
