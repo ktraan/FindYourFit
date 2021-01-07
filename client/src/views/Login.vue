@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-row class="d-flex justify-center">
+    <!-- <v-row class="d-flex justify-center">
       <v-alert v-if="error" type="error" class="text-center mt-5" width="700">
         {{ error }}
       </v-alert>
-    </v-row>
+    </v-row> -->
     <v-form ref="form" v-model="valid" lazy-validation>
-      <v-row class="justify-center mb-10">
+      <v-row class="justify-center mb-10 mt-5">
         <v-card class="pa-5 mt-5 " width="730" height="500" elevation="12">
           <v-row class="justify-center">
             <div class="text-h4 d-flex justify-center mt-5">Login</div>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
 export default {
