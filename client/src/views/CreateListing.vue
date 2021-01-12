@@ -220,7 +220,7 @@
             >
           </v-row>
         </v-card>
-        <v-btn @click="logger">Logger</v-btn>
+        <!-- <v-btn @click="logger">Logger</v-btn> -->
       </v-row>
     </v-container>
   </v-form>

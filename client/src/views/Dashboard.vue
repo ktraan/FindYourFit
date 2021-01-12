@@ -24,7 +24,7 @@
                   color="white"
                   width="200"
                   height="60"
-                  elevation="10"
+                  elevation="20"
                   class="text-capitalize black--text text-h6 mt-5"
                 >
                   View Listings
@@ -35,9 +35,6 @@
         </v-carousel-item>
         <v-carousel-item>
           <v-img src="../../public/slide2.jpg" height="100%"></v-img>
-        </v-carousel-item>
-        <v-carousel-item>
-          <v-img src="../../public/slide3.jpg" height="100%"></v-img>
         </v-carousel-item>
         <v-carousel-item>
           <v-img src="../../public/slide4.jpg" height="100%"></v-img>

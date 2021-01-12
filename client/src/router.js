@@ -1,5 +1,5 @@
 import Vue from "vue";
-import store from "../store/index.js";
+// import store from "../store/index.js";
 import Router from "vue-router";
 
 Vue.use(Router);
@@ -55,10 +55,18 @@ export default new Router({
     },
     {
       path: "/createListing",
-      name: "create listing",
+      name: "createListing",
       component: () => import("./views/CreateListing.vue"),
       meta: {
         title: "Create Listing - Find Your Fit"
+      }
+    },
+    {
+      path: "/myListings",
+      name: "myListings",
+      component: () => import("./views/MyListing.vue"),
+      meta: {
+        title: "My Listing - Find Your Fit"
       }
     }
   ]
