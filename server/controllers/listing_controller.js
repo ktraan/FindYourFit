@@ -3,7 +3,7 @@ const Listing = require('../models/listing');
 const getAllListings = async (req, res) => {
 
   try {
-    const listings = await Listing.find();
+    const listings = await Listing.find().populate('creator');
     if (!listings) {
       throw new Error("No listings found")
     }
