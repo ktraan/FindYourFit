@@ -22,6 +22,10 @@ Content-Type: application/json
 ###
 
 
+DELETE http://localhost:3000/listing/5fcff355b23c7b234c487955
+
+###
+
 
 // GET all users
 GET http://localhost:3000/register

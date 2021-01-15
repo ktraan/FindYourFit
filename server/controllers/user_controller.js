@@ -56,16 +56,16 @@ deleteUser = async (req, res) => {
     User.findByIdAndRemove(req.params.id).then(data => {
         if (!data) {
           res.status(404).send({
-            message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+            message: `Cannot delete User with id=${id}.`
           });
         } else {
           res.send({
-            message: "Tutorial was deleted successfully!"
+            message: "User was deleted successfully!"
           });
         }
       }).catch(err => {
         res.status(500).send({
-          message: "Could not delete Tutorial with id=" + req.params.id
+          message: "Could not delete User with id=" + req.params.id
         });
       });
 }

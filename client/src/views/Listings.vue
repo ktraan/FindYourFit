@@ -28,7 +28,10 @@
             <v-icon color="blue darken-2" large>mdi-twitter</v-icon>
           </v-btn>
         </v-row>
-        <v-divider></v-divider>
+        <v-divider class="mt-2"></v-divider>
+        <v-card-text>
+          {{ listing.summary }}
+        </v-card-text>
       </v-card>
     </v-row>
 

@@ -38,8 +38,27 @@ const createListing = async (req, res) => {
     }
 }
 
+const deleteListing = async (req, res) => {
+  let listing;
+  try {
+      listing = await Listing.findById(req.params.id)
+      if (listing) {
+        listing.remove()
+        res.status(200).json({message: "Listing has been deleted!"})
+      } else {
+        res.json({ message: `Couldn't find Listing with ID ${req.body.id}`})
+      }
+  } catch (error) {
+    if (error) {
+      console.log(error)
+      res.status(500).json(error)
+    }
+  }
+}
+
 module.exports = {
     getAllListings,
     getSingleListing,
     createListing,
+    deleteListing,
 }

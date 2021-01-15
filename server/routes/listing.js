@@ -8,4 +8,6 @@ router.get('/', listingController.getAllListings)
 
 router.post('/', listingController.createListing)
 
+router.delete('/:id', listingController.deleteListing)
+
 module.exports = router;
