@@ -3,8 +3,8 @@
     <v-row class="mt-10"></v-row>
     <v-row justify="center">
       <v-card
-        v-for="listing in listings"
-        :key="listing.id"
+        v-for="(listing, index) in listings"
+        :key="listing.value"
         width="400"
         class="ml-16"
       >
@@ -14,7 +14,14 @@
           max-height="400"
         ></v-img>
         <v-card-title class="text-h4 justify-center">
-          {{ `${listing.creator.firstName} ${listing.creator.lastName}` }}
+          <v-btn
+            elevation="0"
+            color="white"
+            class="text-capitalize text-h4"
+            @click="viewListing(index)"
+          >
+            {{ `${listing.creator.firstName} ${listing.creator.lastName}` }}
+          </v-btn>
         </v-card-title>
 
         <!-- Icons -->
@@ -33,7 +40,7 @@
           </v-btn>
         </v-row>
         <v-divider class="mt-2"></v-divider>
-        <v-card-text>
+        <v-card-text class="text-center">
           {{ listing.summary }}
         </v-card-text>
       </v-card>
@@ -61,6 +68,7 @@ export default {
       errors: "",
       creators: [],
       listings: [],
+      selectedId: "",
 
       icons: [
         { facebook: "mdi-facebook" },
@@ -91,6 +99,18 @@ export default {
             "There was a problem loading the listings, Please try again later.";
           console.log(error);
         });
+    },
+    viewListing(index) {
+      /**
+       *  [x] Get the index of the array
+       *  [x] Search array for the selected index
+       *  [] Send the id through params
+       *
+       */
+      // console.log(this.listings[index]._id);
+      const listingToSend = this.listings[index]._id;
+
+      this.$router.push({ name: "viewListing", params: { id: listingToSend } });
     },
 
     logger() {

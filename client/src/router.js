@@ -54,6 +54,14 @@ export default new Router({
       }
     },
     {
+      path: "/listings/:id",
+      name: "viewListing",
+      component: () => import("./views/ViewListing.vue"),
+      meta: {
+        title: "View Listings - Find Your Fit"
+      }
+    },
+    {
       path: "/createListing",
       name: "createListing",
       component: () => import("./views/CreateListing.vue"),

@@ -39,11 +39,6 @@
                   class="ml-10 mt-10"
                 >
                 </v-img>
-                <!-- <v-btn class="mt-auto ml-n5" icon @click="uploadImage">
-                  <v-icon x-large color="grey darken-4" class=""
-                    >mdi-camera</v-icon
-                  >
-                </v-btn> -->
               </v-row>
               <v-row class="">
                 <v-col cols="11"
