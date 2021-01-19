@@ -32,7 +32,12 @@
               <v-spacer class=""></v-spacer>
 
               <v-row class="d-flex ml-10 mt-16">
-                <v-img :src="image" max-width="250" class="ml-10 mt-10">
+                <v-img
+                  :src="image"
+                  max-width="250"
+                  max-height="300"
+                  class="ml-10 mt-10"
+                >
                 </v-img>
                 <!-- <v-btn class="mt-auto ml-n5" icon @click="uploadImage">
                   <v-icon x-large color="grey darken-4" class=""

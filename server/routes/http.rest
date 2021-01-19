@@ -22,7 +22,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:3000/listing/5fcff355b23c7b234c487955
+DELETE http://localhost:3000/listing/60073c137b9a195d3090f236
 
 ###
 

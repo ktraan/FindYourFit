@@ -8,7 +8,11 @@
         width="400"
         class="ml-16"
       >
-        <v-img :src="listing.profilePicture" max-width="400"></v-img>
+        <v-img
+          :src="listing.profilePicture"
+          max-width="400"
+          max-height="400"
+        ></v-img>
         <v-card-title class="text-h4 justify-center">
           {{ `${listing.creator.firstName} ${listing.creator.lastName}` }}
         </v-card-title>
