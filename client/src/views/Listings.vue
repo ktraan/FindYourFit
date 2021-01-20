@@ -6,7 +6,7 @@
         v-for="(listing, index) in listings"
         :key="listing.value"
         width="400"
-        class="ml-16"
+        class="mr-16 ml-10 mb-10"
       >
         <v-img
           :src="listing.profilePicture"
@@ -45,8 +45,6 @@
         </v-card-text>
       </v-card>
     </v-row>
-
-    <v-btn @click="logger">Logger</v-btn>
   </v-container>
 </template>
 
@@ -56,7 +54,7 @@
  * [x] Fetch all listings
  * [x] Get the total listing count for looping index to render cards
  * [x] Figure out how to retreived referenced data
- * [ ] Create card component with all of the data
+ * [x] Create card component with all of the data
  *
  *
  */
@@ -104,7 +102,7 @@ export default {
       /**
        *  [x] Get the index of the array
        *  [x] Search array for the selected index
-       *  [] Send the id through params
+       *  [x] Send the id through params
        *
        */
       // console.log(this.listings[index]._id);
