@@ -2,7 +2,7 @@ GET http://localhost:3000/listing
 
 ###
 
-GET http://localhost:3000/listing/5fcff355b23c7b234c48795h
+GET http://localhost:3000/listing/5ff783244281af5e6c01cd49
 
 ###
 
@@ -21,6 +21,9 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3000/user/5fc7110f85957667585e7ab0
+
+###
 
 DELETE http://localhost:3000/listing/60073ce77b9a195d3090f237
 

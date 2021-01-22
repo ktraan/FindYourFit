@@ -15,7 +15,7 @@ const getAllListings = async (req, res) => {
 
 const getSingleListing = async (req, res) => {
   try {
-    const singleListing = await Listing.findById(req.params.id)
+    const singleListing = await Listing.findById(req.params.id).populate('creator')
     if (!singleListing) {
       throw new Error("Listing could not be found")
     }

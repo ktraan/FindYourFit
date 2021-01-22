@@ -1,15 +1,28 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt');
 
-const getAllUsers = (req, res) => {
-    User.find()
-    .then((data) => {
-      res.status(200).json(data);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json(err);
-    });
+const getAllUsers = async (req, res) => {
+    try {
+      const user = await User.find();
+      if(!user) {
+        throw new Error("No user found")
+      }
+      res.status(200).json(user)
+    } catch (error) {
+      res.status(500).json({message: "Internal Server Error"}) 
+    }
+}
+
+const getSingleUser = async (req, res) => {
+  try {
+    const singleUser = await User.findById(req.params.id)
+    if (!singleUser) {
+      throw new Error ("User cannot be found")
+    }
+    res.status(200).json(singleUser)
+  } catch (error) {
+    res.status(500).json({message: "Internal Server Error"})
+  }
 }
 
 createUser = async (req, res) => {
@@ -72,6 +85,7 @@ deleteUser = async (req, res) => {
 
 module.exports = {
     getAllUsers,
+    getSingleUser,
     createUser,
     login,
     deleteUser,
