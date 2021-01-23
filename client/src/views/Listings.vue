@@ -66,14 +66,7 @@ export default {
       errors: "",
       creators: [],
       listings: [],
-      selectedId: "",
-
-      icons: [
-        { facebook: "mdi-facebook" },
-        { instagram: "mdi-instagram" },
-        { instagram: "mdi-youtube" },
-        { instagram: "mdi-twitter" }
-      ]
+      selectedId: ""
     };
   },
   mounted() {
