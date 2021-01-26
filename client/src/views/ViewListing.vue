@@ -13,7 +13,7 @@
             max-width="500"
           ></v-img>
         </v-col>
-        <v-col class="ml-n10">
+        <v-col cols="6" class="ml-xl-n10">
           <v-row>
             <v-card-title
               class="text-h5 text-sm-h3 text-md-h2 mb-2 font-weight-light"
@@ -23,26 +23,49 @@
           </v-row>
           <v-row class="ml-2">
             <v-icon color="black" x-large>mdi-phone</v-icon>
-            <div class="text-h5 mt-1 ml-5">
+            <div
+              class="text-h7 text-sm-h6 text-md-h5 font-weight-light mt-1 ml-5"
+            >
               {{ listing.phone }}
             </div>
           </v-row>
           <v-row class="ml-2 mt-2">
             <v-icon color="black" x-large>mdi-email</v-icon>
-            <div class="text-h5 mt-1 ml-5">
+            <div
+              class="text-h7 text-sm-h6 text-md-h5 font-weight-light mt-1 ml-5"
+            >
               {{ listing.email }}
             </div>
           </v-row>
-          <v-row class="ml-2 mt-2">
+          <v-row class=" mt-2">
             <v-btn
               v-for="icon in icons"
               :key="icon.id"
               icon
-              color="black"
-              class=""
+              :color="icon.color"
+              class="ml-5"
             >
               <v-icon class="ml-2" x-large>{{ icon.name }}</v-icon>
             </v-btn>
+          </v-row>
+          <v-row>
+            <div
+              class="text-h7 text-sm-h6 text-md-h5 font-weight-regular ml-5 mt-5 "
+            >
+              {{ listing.summary }}
+            </div>
+          </v-row>
+          <v-row>
+            <div
+              class="text-h7 text-sm-h6 text-md-h5 font-weight-medium mt-1 ml-5"
+            >
+              {{ listing.yearsExperience }} years of experience
+            </div>
+          </v-row>
+          <v-row>
+            <div>
+              {{ listing.education }}
+            </div>
           </v-row>
         </v-col>
       </v-row>
@@ -78,10 +101,10 @@ export default {
       fullName: "",
 
       icons: [
-        { name: "mdi-facebook" },
-        { name: "mdi-instagram" },
-        { name: "mdi-youtube" },
-        { name: "mdi-twitter" }
+        { name: "mdi-facebook", color: "blue darken-2" },
+        { name: "mdi-instagram", color: "black" },
+        { name: "mdi-youtube", color: "red" },
+        { name: "mdi-twitter", color: "blue darken-2" }
       ]
     };
   },

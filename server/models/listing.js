@@ -28,6 +28,7 @@ const listingSchema = new mongoose.Schema({
     },
     yearsExperience: {
         type: String,
+        default: "0"
     },
     // Education can be degrees, diplomas, certificates
     education: {
