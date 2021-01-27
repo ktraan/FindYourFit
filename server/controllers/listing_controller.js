@@ -38,6 +38,22 @@ const createListing = async (req, res) => {
     }
 }
 
+const updateListing = async (req, res) => {
+  try {
+    const listing = await Listing.findByIdAndUpdate(req.params.id, req.body, {
+      useFindAndModify: false,
+      new: true,
+      runValidators: true
+    })
+    res.status(200).json(listing)
+  } catch (error) {
+    if (res.status === 422) {
+      res.json({message: "Problem updating listing, check the data and try again."})
+    }
+    res.status(500).json(error)
+  }
+}
+
 const deleteListing = async (req, res) => {
   let listing;
   try {
@@ -60,5 +76,6 @@ module.exports = {
     getAllListings,
     getSingleListing,
     createListing,
+    updateListing,
     deleteListing,
 }

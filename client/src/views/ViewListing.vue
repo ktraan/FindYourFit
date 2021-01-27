@@ -4,7 +4,7 @@
       {{ errors }}
     </v-alert>
     <v-row justify="center">
-      <v-card class="mt-12" max-width="1400">
+      <v-card class="mt-12" max-width="1500">
         <v-row>
           <v-col cols="4">
             <v-img
@@ -17,7 +17,7 @@
           <v-col md="3" class="">
             <v-row>
               <v-card-title
-                class="text-h5 text-sm-h3 text-md-h2 mb-2 font-weight-light"
+                class="text-h5 text-sm-h4 text-md-h3 mb-2 font-weight-light"
               >
                 {{ fullName }}
               </v-card-title>
@@ -43,13 +43,13 @@
                 {{ listing.email }}
               </div>
             </v-row>
-            <v-row class="mt-3">
+            <v-row class="mt-3 justify-space-around">
               <v-btn
                 v-for="icon in icons"
                 :key="icon.id"
                 icon
                 :color="icon.color"
-                class="ml-5"
+                class="ml-n5"
               >
                 <v-icon class="ml-2" x-large>{{ icon.name }}</v-icon>
               </v-btn>
@@ -75,10 +75,10 @@
               </v-chip>
             </v-row>
           </v-col>
-          <v-col md="4" class="">
+          <v-col md="" class="">
             <v-row class="mt-xl-16 mt-lg-5">
               <div
-                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-regular mt-10 mt-lg-0 mt-xl-5 ml-5"
+                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-10 ml-5 mr-10"
               >
                 {{ listing.summary }}
               </div>
