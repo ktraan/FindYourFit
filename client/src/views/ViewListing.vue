@@ -4,9 +4,9 @@
       {{ errors }}
     </v-alert>
     <v-row justify="center">
-      <v-card class="mt-12" max-width="1500">
+      <v-card class="mt-12" max-width="1600">
         <v-row>
-          <v-col cols="4">
+          <v-col cols="3">
             <v-img
               :lazy-src="listing.profilePicture"
               :src="listing.profilePicture"
@@ -14,7 +14,7 @@
               max-width="600"
             ></v-img>
           </v-col>
-          <v-col md="3" class="">
+          <v-col md="4" class="">
             <v-row>
               <v-card-title
                 class="text-h5 text-sm-h4 text-md-h3 mb-2 font-weight-light"
@@ -43,15 +43,41 @@
                 {{ listing.email }}
               </div>
             </v-row>
-            <v-row class="mt-3 justify-space-around">
+            <v-row
+              v-if="
+                listing.facebookLink ||
+                  listing.instagramLink ||
+                  listing.youtubeLink ||
+                  listing.twitterLink
+              "
+              class="mt-3"
+            >
               <v-btn
-                v-for="icon in icons"
-                :key="icon.id"
+                class="ml-5"
+                :href="listing.facebookLink"
                 icon
-                :color="icon.color"
-                class="ml-n5"
+                color="blue darken-2"
               >
-                <v-icon class="ml-2" x-large>{{ icon.name }}</v-icon>
+                <v-icon class="ml-2" x-large>mdi-facebook</v-icon>
+              </v-btn>
+              <v-btn
+                class="ml-10"
+                :href="listing.instagramLink"
+                icon
+                color="black"
+              >
+                <v-icon class="ml-2" x-large>mdi-instagram</v-icon>
+              </v-btn>
+              <v-btn class="ml-10" :href="listing.youtubeLink" icon color="red">
+                <v-icon class="ml-2" x-large>mdi-youtube</v-icon>
+              </v-btn>
+              <v-btn
+                class="ml-10"
+                :href="listing.twitterLink"
+                icon
+                color="blue darken-2"
+              >
+                <v-icon class="ml-2" x-large>mdi-twitter</v-icon>
               </v-btn>
             </v-row>
             <v-row>
@@ -78,7 +104,7 @@
           <v-col md="" class="">
             <v-row class="mt-xl-16 mt-lg-5">
               <div
-                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-10 ml-5 mr-10"
+                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-10 ml-n10  mr-10"
               >
                 {{ listing.summary }}
               </div>
@@ -95,7 +121,6 @@
         >Back To Listings</v-btn
       >
     </v-row>
-    <v-btn @click="logger">Logger</v-btn>
   </v-container>
 </template>
 
@@ -103,8 +128,8 @@
 /**
  * TODO Items:
  * [x] Get the id listing through params
- * [] Fetch data and put it in mounted
- * [] Create card component listing
+ * [x] Fetch data and put it in mounted
+ * [x] Create card component listing
  *
  */
 
@@ -115,14 +140,17 @@ export default {
     return {
       errors: "",
       listing: {},
-      fullName: "",
+      fullName: ""
 
-      icons: [
-        { name: "mdi-facebook", color: "blue darken-2" },
-        { name: "mdi-instagram", color: "black" },
-        { name: "mdi-youtube", color: "red" },
-        { name: "mdi-twitter", color: "blue darken-2" }
-      ]
+      // icons: [
+      //   {
+      //     name: "mdi-facebook",
+      //     color: "blue darken-2"
+      //   },
+      //   { name: "mdi-instagram", color: "black" },
+      //   { name: "mdi-youtube", color: "red" },
+      //   { name: "mdi-twitter", color: "blue darken-2" }
+      // ]
     };
   },
   mounted() {

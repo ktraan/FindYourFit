@@ -26,20 +26,51 @@
 
         <!-- Icons -->
         <v-row justify="center" class="mt-n2">
-          <v-btn class="" icon>
+          <v-btn
+            v-if="listing.facebookLink"
+            class=""
+            :href="listing.facebookLink"
+            icon
+          >
             <v-icon color="blue darken-2" large>mdi-facebook</v-icon>
           </v-btn>
-          <v-btn class="ml-4" icon>
+
+          <v-btn
+            v-if="listing.instagramLink"
+            class="ml-4"
+            :href="listing.instagramLink"
+            icon
+          >
             <v-icon color="black" large>mdi-instagram</v-icon>
           </v-btn>
-          <v-btn class="ml-4" icon>
+          <v-btn
+            v-if="listing.youtubeLink"
+            :href="listing.youtubeLink"
+            class="ml-4"
+            icon
+          >
             <v-icon color="red" large>mdi-youtube</v-icon>
           </v-btn>
-          <v-btn class="ml-4" icon>
+          <v-btn
+            v-if="listing.twitterLink"
+            :href="listing.twitterLink"
+            class="ml-4"
+            icon
+          >
             <v-icon color="blue darken-2" large>mdi-twitter</v-icon>
           </v-btn>
         </v-row>
+        <v-row
+          v-if="
+            !listing.facebookLink &&
+              !listing.instagramLink &&
+              !listing.youtubeLink &&
+              !listing.twitterLink
+          "
+          class="mt-9"
+        ></v-row>
         <v-divider class="mt-2"></v-divider>
+
         <v-card-text class="text-center">
           {{ listing.summary }}
         </v-card-text>
@@ -105,7 +136,7 @@ export default {
     },
 
     logger() {
-      console.log(this.creators);
+      console.log(this.listings);
       // console.log(this.listings[0]);
       // console.log(`Listings: ${this.listings}`);
       // console.log(`Listing length: ${this.listings.length}`);

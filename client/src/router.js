@@ -70,8 +70,8 @@ export default new Router({
       }
     },
     {
-      path: "/myListings",
-      name: "myListings",
+      path: "/myListing/:id",
+      name: "myListing",
       component: () => import("./views/MyListing.vue"),
       meta: {
         title: "My Listing - Find Your Fit"

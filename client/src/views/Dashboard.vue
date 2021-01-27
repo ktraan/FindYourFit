@@ -14,18 +14,23 @@
         <v-carousel-item>
           <v-img src="../../public/slide1.jpg" class="d-sm-flex" height="100%">
             <v-row class="mt-16" justify="center" align="center">
-              <div class="white--text text-h2 font-weight-medium">
+              <div class="white--text text-h2 font-weight-regular">
                 Check out all of the current listings!
               </div>
             </v-row>
             <v-row class="justify-center">
               <router-link to="/listings" class="text-decoration-none">
                 <v-btn
-                  color="white"
                   width="200"
                   height="60"
                   elevation="20"
-                  class="text-capitalize black--text text-h6 mt-5"
+                  class="text-capitalize white--text text-h6 mt-5"
+                  color="white"
+                  outlined
+                  rounded
+                  plain
+                  shaped
+                  focus
                 >
                   View Listings
                 </v-btn></router-link
