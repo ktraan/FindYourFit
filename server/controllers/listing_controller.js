@@ -26,6 +26,22 @@ const getSingleListing = async (req, res) => {
   }
 }
 
+const getSingleListingByEmail = async (req, res) => {
+  try {
+    console.log(req.body.email)
+    const singleListing = await Listing.findOne({email: req.body.email}).exec()
+    if (singleListing) {
+      return res.status(200).json(singleListing);
+    } else {
+      res.json({message: "Listing not found"})
+    }
+
+    
+  } catch(error) {
+    res.status(500).json(error)
+  }
+}
+
 const createListing = async (req, res) => {
     try {
         const newListing = await Listing.create(req.body);
@@ -75,6 +91,7 @@ const deleteListing = async (req, res) => {
 module.exports = {
     getAllListings,
     getSingleListing,
+    getSingleListingByEmail,
     createListing,
     updateListing,
     deleteListing,

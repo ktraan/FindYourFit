@@ -137,7 +137,7 @@
                   color="amber darken-2"
                 >
                 </v-text-field>
-                <v-text-field
+                <!-- <v-text-field
                   v-model="listing.email"
                   :error-messages="emailErrors"
                   @blur="$v.listing.email.$touch()"
@@ -146,7 +146,7 @@
                   prepend-icon="mdi-email"
                   color="amber darken-2"
                 >
-                </v-text-field>
+                </v-text-field> -->
                 <v-text-field
                   v-model="listing.website"
                   :error-messages="websiteErrors"
@@ -232,7 +232,7 @@ import {
   minLength,
   maxLength,
   numeric,
-  email,
+  // email,
   url
 } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
@@ -251,7 +251,7 @@ export default {
         listingType: "",
         summary: "",
         phone: "",
-        email: "",
+        // email: "",
         website: "",
         facebookField: "",
         instagramField: "",
@@ -284,10 +284,10 @@ export default {
         numeric,
         minLength: minLength(7)
       },
-      email: {
-        required,
-        email
-      },
+      // email: {
+      //   required,
+      //   email
+      // },
       occupation: {
         required,
         maxLength: maxLength(50)
@@ -333,17 +333,17 @@ export default {
       }
       return errors;
     },
-    emailErrors() {
-      const errors = [];
-      if (this.$v.listing.email.$dirty) {
-        if (!this.$v.listing.email.required) errors.push("Email is required.");
-      }
-      if (this.$v.listing.email.$dirty) {
-        if (!this.$v.listing.email.email)
-          errors.push("Invalid email format. ex: findyourfit@gmail.com.");
-      }
-      return errors;
-    },
+    // emailErrors() {
+    //   const errors = [];
+    //   if (this.$v.listing.email.$dirty) {
+    //     if (!this.$v.listing.email.required) errors.push("Email is required.");
+    //   }
+    //   if (this.$v.listing.email.$dirty) {
+    //     if (!this.$v.listing.email.email)
+    //       errors.push("Invalid email format. ex: findyourfit@gmail.com.");
+    //   }
+    //   return errors;
+    // },
     occupationErrors() {
       const errors = [];
       if (this.$v.listing.occupation.$dirty) {
@@ -444,7 +444,7 @@ export default {
             education: this.listing.education,
             listingType: this.listing.listingType,
             phone: this.listing.phone,
-            email: this.listing.email,
+            // email: this.listing.email,
             website: this.listing.website,
             facebookLink: this.listing.facebookField,
             instagramLink: this.listing.instagramField,

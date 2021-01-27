@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
   try {
-    const singleUser = await User.findById(req.params.id)
+    const singleUser = await User.findById(req.params.id).populate('listing')
     if (!singleUser) {
       throw new Error ("User cannot be found")
     }

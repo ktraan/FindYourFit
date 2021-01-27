@@ -6,6 +6,8 @@ router.get('/:id', listingController.getSingleListing)
 
 router.get('/', listingController.getAllListings)
 
+router.post('/myListing', listingController.getSingleListingByEmail)
+
 router.post('/', listingController.createListing)
 
 router.put('/:id', listingController.updateListing)

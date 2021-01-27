@@ -8,7 +8,7 @@
         hide-delimiters
         dark
         height="800"
-        interval="1000000000"
+        interval="10000"
       >
         <!-- keep interval at 15sec -->
         <v-carousel-item>

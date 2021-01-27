@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const emailRegEx = new RegExp(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/);
 
 const userSchema = new mongoose.Schema({
+  listing: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Listing",
+  },
   firstName: {
     type: String,
     required: [true, "First Name is required."],
@@ -49,6 +53,7 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: false,
   },
+  
 
 });
 

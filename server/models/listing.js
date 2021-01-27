@@ -10,10 +10,10 @@ const listingSchema = new mongoose.Schema({
         type: String,
         required: [true, "Phone is required"]
     },
-    email: {
-        type: String,
-        required: [true, "Email is required"]
-    },
+    // email: {
+    //     type: String,
+    //     required: [true, "Email is required"]
+    // },
     website: {
         type: String,
     },

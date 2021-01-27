@@ -21,7 +21,7 @@
         Listings
       </router-link>
       <router-link
-        to="/myListings"
+        to="/myListing"
         class="text-decoration-none text-capitalize text-h6 white--text mt-3 mr-7 font-weight-light"
       >
         My Listing

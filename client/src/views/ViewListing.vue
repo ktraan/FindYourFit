@@ -40,7 +40,7 @@
               <div
                 class="text-h7 text-sm-h6 text-md-h5 font-weight-light mt-1 ml-5"
               >
-                {{ listing.email }}
+                {{ email }}
               </div>
             </v-row>
             <v-row
@@ -140,17 +140,8 @@ export default {
     return {
       errors: "",
       listing: {},
-      fullName: ""
-
-      // icons: [
-      //   {
-      //     name: "mdi-facebook",
-      //     color: "blue darken-2"
-      //   },
-      //   { name: "mdi-instagram", color: "black" },
-      //   { name: "mdi-youtube", color: "red" },
-      //   { name: "mdi-twitter", color: "blue darken-2" }
-      // ]
+      fullName: "",
+      email: ""
     };
   },
   mounted() {
@@ -166,6 +157,7 @@ export default {
         .then(response => {
           this.listing = response.data;
           this.fullName = `${response.data.creator.firstName} ${response.data.creator.lastName}`;
+          this.email = response.data.creator.email;
         })
         .catch(error => {
           this.errors = "There was a problem getting this listing";
