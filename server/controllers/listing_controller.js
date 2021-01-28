@@ -35,8 +35,6 @@ const getSingleListingByEmail = async (req, res) => {
     } else {
       res.json({message: "Listing not found"})
     }
-
-    
   } catch(error) {
     res.status(500).json(error)
   }

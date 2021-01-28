@@ -104,7 +104,7 @@
           <v-col md="" class="">
             <v-row class="mt-xl-16 mt-lg-5">
               <div
-                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-10 ml-n10  mr-10"
+                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-5 ml-n10  mr-10"
               >
                 {{ listing.summary }}
               </div>

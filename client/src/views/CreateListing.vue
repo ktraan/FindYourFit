@@ -25,8 +25,8 @@
         </div>
       </v-row>
 
-      <v-row class="justify-center mt-5 mb-5">
-        <v-card width="1200" height="620" elevation="3" tile>
+      <v-row class="justify-center mt-5 mb-5 ">
+        <v-card class="pa-2" width="1200" height="650" elevation="3" tile>
           <v-row>
             <v-col cols="4">
               <v-spacer class=""></v-spacer>
@@ -64,6 +64,10 @@
             <v-col cols="4">
               <div class="text-h4 text-sm-h5 mb-5 mt-2 ml-n1">
                 {{ user.firstName + " " + user.lastName }}
+
+                <div>
+                  {{ user.email }}
+                </div>
               </div>
               <v-text-field
                 v-model="listing.occupation"
@@ -101,6 +105,7 @@
                 deletable-chips
                 multiple
                 clearable
+                small-chips
                 placeholder="Type and press enter..."
                 name="education"
                 label="Education"
@@ -198,26 +203,31 @@
                 >
                 </v-text-field>
               </v-row>
-
+              <v-row class="justify-end mt-5">
+                <v-btn
+                  class="text-capitalize text-h5 mr-3"
+                  color="grey darken-2"
+                  outlined
+                  hover
+                  focus
+                  large
+                  @click="clear"
+                  >Clear</v-btn
+                >
+                <v-btn
+                  class="text-capitalize text-h5 "
+                  color="amber darken-4"
+                  outlined
+                  hover
+                  focus
+                  width="150"
+                  large
+                  @click="submit"
+                  >Submit</v-btn
+                ></v-row
+              >
               <!-- <v-spacer class="mt-16"></v-spacer> -->
             </v-col>
-            <v-row class="justify-end  ml-n16"
-              ><v-btn
-                class="mt-auto  text-capitalize mr-6 text-h5"
-                color="grey lighten-1"
-                large
-                @click="clear"
-                >Clear</v-btn
-              >
-              <v-btn
-                class="mt-auto  text-capitalize mr-12 text-h5"
-                color="amber darken-2"
-                width="200"
-                large
-                @click="submit"
-                >Submit</v-btn
-              ></v-row
-            >
           </v-row>
         </v-card>
         <!-- <v-btn @click="logger">Logger</v-btn> -->
@@ -444,7 +454,7 @@ export default {
             education: this.listing.education,
             listingType: this.listing.listingType,
             phone: this.listing.phone,
-            // email: this.listing.email,
+            email: this.user.email,
             website: this.listing.website,
             facebookLink: this.listing.facebookField,
             instagramLink: this.listing.instagramField,

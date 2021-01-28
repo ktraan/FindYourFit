@@ -70,7 +70,7 @@ export default new Router({
       }
     },
     {
-      path: "/myListing/:id",
+      path: "/myListing",
       name: "myListing",
       component: () => import("./views/MyListing.vue"),
       meta: {
