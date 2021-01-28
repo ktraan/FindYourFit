@@ -51,8 +51,9 @@
                     :rules="imagesize"
                     label="Attach Image"
                     @change="changeImage"
-                  ></v-file-input
-                ></v-col>
+                  >
+                  </v-file-input>
+                </v-col>
               </v-row>
               <v-row class="d-flex ml-2">
                 <div class="text-h5 font-weight-light text-center ml-12">
@@ -69,6 +70,7 @@
                   {{ user.email }}
                 </div>
               </div>
+
               <v-text-field
                 v-model="listing.occupation"
                 :error-messages="occupationErrors"
@@ -97,7 +99,8 @@
                 name="summary"
                 label="Summary"
                 color="amber darken-2"
-              ></v-textarea>
+              >
+              </v-textarea>
 
               <v-combobox
                 v-model="listing.education"
