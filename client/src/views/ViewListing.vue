@@ -4,9 +4,9 @@
       {{ errors }}
     </v-alert>
     <v-row justify="center">
-      <v-card class="mt-12" max-width="1600">
+      <v-card class="mt-12" max-width="1000">
         <v-row>
-          <v-col cols="3">
+          <v-col class="mt-auto mb-auto" cols="6">
             <v-img
               :lazy-src="listing.profilePicture"
               :src="listing.profilePicture"
@@ -14,31 +14,31 @@
               max-width="600"
             ></v-img>
           </v-col>
-          <v-col md="4" class="">
+          <v-col md="" class="">
             <v-row>
               <v-card-title
-                class="text-h5 text-sm-h4 text-md-h3 mb-2 font-weight-light"
+                class="text-h4 text-sm-h3 text-md-h2 mb-2 font-weight-light"
               >
                 {{ fullName }}
               </v-card-title>
             </v-row>
             <v-row
-              class="ml-2 text-h6 text-sm-h5 text-md-h4 font-weight-regular mb-2"
+              class="ml-2 text-h5 text-sm-h4 text-md-h3 font-weight-light mb-2"
             >
               <div>{{ listing.occupation }}</div>
             </v-row>
             <v-row class="ml-2">
-              <v-icon color="black" x-large>mdi-phone</v-icon>
+              <v-icon class="mt-2" color="black" x-large>mdi-phone</v-icon>
               <div
-                class="text-h7 text-sm-h6 text-md-h5 font-weight-light mt-1 ml-5"
+                class="text-h6 text-sm-h5 text-md-h4 font-weight-light mt-3 ml-5"
               >
                 {{ listing.phone }}
               </div>
             </v-row>
             <v-row class="ml-2 mt-2">
-              <v-icon color="black" x-large>mdi-email</v-icon>
+              <v-icon class="mt-2" color="black" x-large>mdi-email</v-icon>
               <div
-                class="text-h7 text-sm-h6 text-md-h5 font-weight-light mt-1 ml-5"
+                class="text-h6 text-sm-h5 text-md-h4 font-weight-light mt-3 ml-5"
               >
                 {{ email }}
               </div>
@@ -50,7 +50,7 @@
                   listing.youtubeLink ||
                   listing.twitterLink
               "
-              class="mt-3"
+              class="mt-4"
             >
               <v-btn
                 class="ml-5"
@@ -101,18 +101,18 @@
               </v-chip>
             </v-row>
           </v-col>
-          <v-col md="" class="">
-            <v-row class="mt-xl-16 mt-lg-5">
-              <div
-                class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light mt-10 mt-lg-0 mt-xl-5 ml-n10  mr-10"
-              >
-                {{ listing.summary }}
-              </div>
-            </v-row>
+        </v-row>
+        <v-row class="justify-center">
+          <v-col cols="">
+            <div
+              class="text-h7 text-sm-h6 text-md-h5 text-lg-h4 font-weight-light text-center"
+            >
+              {{ listing.summary }}
+            </div>
           </v-col>
         </v-row>
-      </v-card></v-row
-    >
+      </v-card>
+    </v-row>
     <v-row justify="center">
       <v-btn
         class="mt-5 amber darken-2 text-h6 text-capitalize font-weight-regular"
