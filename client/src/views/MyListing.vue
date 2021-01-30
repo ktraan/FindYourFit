@@ -166,6 +166,31 @@
               >
               </v-text-field>
             </v-row>
+
+            <v-row class="justify-end mt-5">
+              <v-btn
+                class="text-capitalize text-h5 mr-3"
+                color="grey darken-2"
+                outlined
+                hover
+                focus
+                large
+                @click="clear"
+                >Clear</v-btn
+              >
+              <v-btn
+                class="text-capitalize text-h5 "
+                color="amber darken-4"
+                outlined
+                hover
+                focus
+                width="150"
+                large
+                @click="updateListing"
+              >
+                Update
+              </v-btn>
+            </v-row>
           </v-col>
         </v-row>
       </v-card>
@@ -176,6 +201,13 @@
 </template>
 
 <script>
+import {
+  required,
+  minLength,
+  maxLength,
+  numeric,
+  url
+} from "vuelidate/lib/validators";
 import axios from "axios";
 import { mapGetters } from "vuex";
 
@@ -184,7 +216,7 @@ import { mapGetters } from "vuex";
  * [x] Get the listing of that creator
  * [x] Do GET request to retrieve listing data
  * [x] Grab the card component from CreateListing
- * [] Error handling/Validations
+ * [x] Error handling/Validations
  *
  */
 
@@ -210,11 +242,136 @@ export default {
       ]
     };
   },
+  validations: {
+    listing: {
+      phone: {
+        required,
+        numeric,
+        minLength: minLength(7)
+      },
+      occupation: {
+        required,
+        maxLength: maxLength(50)
+      },
+      listingType: {
+        required
+      },
+      summary: {
+        required,
+        maxLength: maxLength(250)
+      },
+      yearsExperience: {
+        numeric
+      },
+      website: {
+        url
+      },
+      facebookLink: {
+        url
+      },
+      instagramLink: {
+        url
+      },
+      youtubeLink: {
+        url
+      },
+      twitterLink: {
+        url
+      }
+    }
+  },
   mounted() {
     this.getListing();
   },
   computed: {
-    ...mapGetters(["user"])
+    ...mapGetters(["user"]),
+    phoneErrors() {
+      const errors = [];
+      if (this.$v.listing.phone.$dirty) {
+        if (!this.$v.listing.phone.required)
+          errors.push("Phone Number is required.");
+        if (!this.$v.listing.phone.numeric)
+          errors.push("Phone Number must be numbers only.");
+        if (!this.$v.listing.phone.minLength)
+          errors.push("Phone Number must be at least 7 numbers.");
+      }
+      return errors;
+    },
+    occupationErrors() {
+      const errors = [];
+      if (this.$v.listing.occupation.$dirty) {
+        if (!this.$v.listing.occupation.required)
+          errors.push("Occupation is required.");
+        if (!this.$v.listing.occupation.maxLength)
+          errors.push("Maximum of 50 characters.");
+      }
+      return errors;
+    },
+    listingTypeErrors() {
+      const errors = [];
+      if (this.$v.listing.listingType.$dirty) {
+        if (!this.$v.listing.listingType.required)
+          errors.push("Listing Type is required.");
+      }
+      return errors;
+    },
+    summaryErrors() {
+      const errors = [];
+      if (this.$v.listing.summary.$dirty) {
+        if (!this.$v.listing.summary.required)
+          errors.push("Summary is required.");
+        if (!this.$v.listing.summary.maxLength)
+          errors.push("Maximum of 250 characters");
+      }
+      return errors;
+    },
+    yearsExperienceErrors() {
+      const errors = [];
+      if (this.$v.listing.yearsExperience.$dirty) {
+        if (!this.$v.listing.yearsExperience.numeric)
+          errors.push("Years of Experience must be a number.");
+      }
+      return errors;
+    },
+    websiteErrors() {
+      const errors = [];
+      if (this.$v.listing.website.$dirty) {
+        if (!this.$v.listing.website.url) errors.push("Invalid website URL.");
+      }
+      return errors;
+    },
+    facebookFieldErrors() {
+      const errors = [];
+      if (this.$v.listing.facebookLink.$dirty) {
+        if (!this.$v.listing.facebookLink.url)
+          errors.push("Invalid Facebook URL.");
+      }
+      return errors;
+    },
+    instagramFieldErrors() {
+      const errors = [];
+      if (this.$v.listing.instagramLink.$dirty) {
+        if (!this.$v.listing.instagramLink.url)
+          errors.push("Invalid Instagram URL.");
+      }
+      return errors;
+    },
+    youtubeFieldErrors() {
+      const errors = [];
+      if (this.$v.listing.youtubeLink.$dirty) {
+        if (!this.$v.listing.youtubeLink.url)
+          errors.push("Invalid YouTube URL.");
+      }
+      return errors;
+    },
+    twitterFieldErrors() {
+      const errors = [];
+      if (this.$v.listing.twitterLink.$dirty) {
+        if (!this.$v.listing.twitterLink.url)
+          errors.push("Invalid Twitter URL.");
+      }
+      return errors;
+    }
   },
 
   methods: {
@@ -240,6 +397,21 @@ export default {
           this.errors = "You don't have a listing!";
         });
     },
+    clear() {
+      this.listing.profilePicture = "";
+      this.listing.occupation = "";
+      this.listing.listingType = "";
+      this.listing.summary = "";
+      this.listing.education = "";
+      this.listing.yearsExperience = "";
+      this.listing.phone = "";
+      this.listing.website = "";
+      this.listing.facebookLink = "";
+      this.listing.instagramLink = "";
+      this.listing.youtubeLink = "";
+      this.listing.twitterLink = "";
+    },
+    updateListing() {},
     logger() {
       console.log(this.listing);
     }

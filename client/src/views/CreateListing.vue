@@ -226,9 +226,10 @@
                   width="150"
                   large
                   @click="submit"
-                  >Submit</v-btn
-                ></v-row
-              >
+                >
+                  Submit
+                </v-btn>
+              </v-row>
               <!-- <v-spacer class="mt-16"></v-spacer> -->
             </v-col>
           </v-row>
@@ -441,7 +442,19 @@ export default {
         this.image = reader.result;
       };
     },
-    clear() {},
+    clear() {
+      this.listing.occupation = "";
+      this.listing.listingType = "";
+      this.listing.summary = "";
+      this.listing.education = "";
+      this.listing.yearsExperience = "";
+      this.listing.phone = "";
+      this.listing.website = "";
+      this.listing.facebookField = "";
+      this.listing.instagramField = "";
+      this.listing.youtubeField = "";
+      this.listing.twitterField = "";
+    },
     submit() {
       this.$v.$touch();
       if (this.$v.$invalid) {
