@@ -33,7 +33,7 @@ const getSingleListingByEmail = async (req, res) => {
     if (singleListing) {
       return res.status(200).json(singleListing);
     } else {
-      res.json({message: "Listing not found"})
+      res.status(204).json({message: "Listing not found"})
     }
   } catch(error) {
     res.status(500).json(error)
@@ -80,7 +80,7 @@ const deleteListing = async (req, res) => {
       }
   } catch (error) {
     if (error) {
-      console.log(error)
+      
       res.status(500).json(error)
     }
   }

@@ -1,7 +1,48 @@
 <template>
   <v-container>
-    <v-btn class="danger">Delete Listing</v-btn>
-    <v-row class="justify-center mt-5 mb-5">
+    <v-alert v-if="message" type="success" class="text-center" outlined>
+      {{ message }}
+    </v-alert>
+    <v-alert v-if="errors" type="error" class="text-center" outlined>
+      {{ errors }}
+    </v-alert>
+    <v-row class="justify-center">
+      <v-col md="9"></v-col>
+      <v-col md="">
+        <v-dialog v-model="dialog" persistent max-width="600">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              class="text-h6 ml-n5 mb-n5 text-capitalize white--text"
+              color="red lighten-1"
+              hover
+            >
+              Delete Listing
+            </v-btn>
+          </template>
+
+          <v-card class="ml-auto mr-auto pa-5">
+            <v-card-title class="headline text-center">
+              Are you sure you want to delete your listing?
+            </v-card-title>
+
+            <v-row class="justify-end mt-2">
+              <v-btn class="mr-2" @click="dialog = false">Cancel</v-btn>
+              <v-btn
+                class="mr-5 text-h7"
+                color="red lighten-1"
+                @click="deleteListing"
+              >
+                Confirm
+              </v-btn></v-row
+            >
+          </v-card>
+        </v-dialog>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="existingListing === true" class="justify-center mt-5 mb-5">
       <v-card class="pa-2" width="1200" height="650" elevation="3" tile>
         <v-row>
           <v-col cols="4">
@@ -195,8 +236,6 @@
         </v-row>
       </v-card>
     </v-row>
-
-    <v-btn @click="logger">Logger</v-btn>
   </v-container>
 </template>
 
@@ -224,7 +263,10 @@ export default {
   data: () => {
     return {
       errors: "",
+      message: "",
       listing: {},
+      dialog: "",
+      existingListing: true,
 
       listingTypeItems: [
         "Personal Training",
@@ -389,11 +431,16 @@ export default {
           email: this.user.email
         })
         .then(response => {
-          console.log(response.data);
-          this.listing = response.data;
+          if (response.status === 200) {
+            this.listing = response.data;
+            this.existingListing = true;
+          } else {
+            this.existingListing = false;
+            this.errors = "There was a problem retrieving your listing";
+          }
         })
-        .catch(error => {
-          console.log(error);
+        .catch(() => {
+          this.existingListing = false;
           this.errors = "You don't have a listing!";
         });
     },
@@ -411,7 +458,54 @@ export default {
       this.listing.youtubeLink = "";
       this.listing.twitterLink = "";
     },
-    updateListing() {},
+    updateListing() {
+      const URL_ENDPOINT = "http://localhost:3000/listing/";
+      axios
+        .put(`${URL_ENDPOINT}${this.listing._id}`, {
+          occupation: this.listing.occupation,
+          summary: this.listing.summary,
+          yearsExperience: this.listing.yearsExperience,
+          education: this.listing.education,
+          listingType: this.listing.listingType,
+          phone: this.listing.phone,
+          email: this.user.email,
+          website: this.listing.website,
+          facebookLink: this.listing.facebookLink,
+          instagramLink: this.listing.instagramLink,
+          youtubeLink: this.listing.youtubeLink,
+          twitterLink: this.listing.twitterLink,
+          profilePicture: this.listing.profilePicture
+        })
+        .then(response => {
+          if (response.status === 200) {
+            this.message = "Your listing has been updated.";
+          } else {
+            this.errors =
+              "There was a problem updating your listing. Please try again";
+          }
+        })
+        .catch(() => {
+          this.errors = "Error updating listing. Please try again.";
+        });
+    },
+    deleteListing() {
+      const URL_ENDPOINT = "http://localhost:3000/listing/";
+
+      axios
+        .delete(`${URL_ENDPOINT}${this.listing._id}`)
+        .then(response => {
+          if (response.status === 200) {
+            this.message = "Your listing has been deleted.";
+            this.existingListing = false;
+          } else {
+            this.errors =
+              "There was a problem deleting your listing. Please try again.";
+          }
+        })
+        .catch(() => {
+          this.errors = "Error deleting listing. Please try again.";
+        });
+    },
     logger() {
       console.log(this.listing);
     }
