@@ -6,7 +6,15 @@
     <v-alert v-if="errors" type="error" class="text-center" outlined>
       {{ errors }}
     </v-alert>
-    <v-row class="justify-center">
+    <div
+      v-if="existingListing === false"
+      class="text-h4 d-flex justify-center mt-5"
+    >
+      Don't have a listing? Create one
+      <router-link to="/createListing" class="ml-2">here</router-link>
+    </div>
+
+    <v-row v-if="existingListing === true" class="justify-center">
       <v-col md="9"></v-col>
       <v-col md="">
         <v-dialog v-model="dialog" persistent max-width="600">
@@ -436,12 +444,12 @@ export default {
             this.existingListing = true;
           } else {
             this.existingListing = false;
-            this.errors = "There was a problem retrieving your listing";
+            this.errors = "You don't have a listing!";
           }
         })
         .catch(() => {
           this.existingListing = false;
-          this.errors = "You don't have a listing!";
+          this.errors = "There was a problem retrieiving your listing";
         });
     },
     clear() {
