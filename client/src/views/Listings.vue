@@ -8,11 +8,8 @@
         width="400"
         class="mr-16 ml-10 mb-10"
       >
-        <v-img
-          :src="listing.profilePicture"
-          max-width="400"
-          max-height="400"
-        ></v-img>
+        <v-img :src="listing.profilePicture" max-width="400" max-height="400">
+        </v-img>
         <v-card-title class="text-h4 justify-center">
           <v-btn
             elevation="0"
@@ -68,7 +65,8 @@
               !listing.twitterLink
           "
           class="mt-9"
-        ></v-row>
+        >
+        </v-row>
         <v-divider class="mt-2"></v-divider>
 
         <v-card-text class="text-center">
@@ -86,8 +84,6 @@
  * [x] Get the total listing count for looping index to render cards
  * [x] Figure out how to retreived referenced data
  * [x] Create card component with all of the data
- *
- *
  */
 import axios from "axios";
 
@@ -97,7 +93,7 @@ export default {
       errors: "",
       creators: [],
       listings: [],
-      selectedId: ""
+      selectedId: "",
     };
   },
   mounted() {
@@ -109,14 +105,14 @@ export default {
       const LISTING_ENDPOINT = "http://localhost:3000/listing";
       axios
         .get(LISTING_ENDPOINT)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             this.listings = response.data;
           } else {
             this.errors = "There are no listings! Be the first to create one.";
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errors =
             "There was a problem loading the listings, Please try again later.";
           console.log(error);
@@ -127,20 +123,11 @@ export default {
        *  [x] Get the index of the array
        *  [x] Search array for the selected index
        *  [x] Send the id through params
-       *
        */
-      // console.log(this.listings[index]._id);
       const listingToSend = this.listings[index]._id;
 
       this.$router.push({ name: "viewListing", params: { id: listingToSend } });
     },
-
-    logger() {
-      console.log(this.listings);
-      // console.log(this.listings[0]);
-      // console.log(`Listings: ${this.listings}`);
-      // console.log(`Listing length: ${this.listings.length}`);
-    }
-  }
+  },
 };
 </script>

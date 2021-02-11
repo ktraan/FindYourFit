@@ -41,9 +41,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(
   session({
     secret: "keyboard dog",
-    // Should we resave our session variables when changed?
     resave: false,
-    // Save empty values in this session
     saveUninitialized: false,
   })
 );

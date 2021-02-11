@@ -43,8 +43,8 @@
                 @click="deleteListing"
               >
                 Confirm
-              </v-btn></v-row
-            >
+              </v-btn>
+            </v-row>
           </v-card>
         </v-dialog>
       </v-col>
@@ -60,11 +60,12 @@
                 max-width="250"
                 max-height="300"
                 class="ml-10 mt-10"
-              ></v-img>
+              >
+              </v-img>
             </v-row>
             <v-row>
-              <v-col cols="11"
-                ><v-file-input
+              <v-col cols="11">
+                <v-file-input
                   class="ml-5 mt-2"
                   color="amber darken-2"
                   dense
@@ -253,7 +254,7 @@ import {
   minLength,
   maxLength,
   numeric,
-  url
+  url,
 } from "vuelidate/lib/validators";
 import axios from "axios";
 import { mapGetters } from "vuex";
@@ -282,14 +283,14 @@ export default {
         "Group Exercise",
         "Yoga",
         "Nutritionist",
-        "Health & Wellness"
+        "Health & Wellness",
       ],
       imagesize: [
-        value =>
+        (value) =>
           !value ||
           value.size < 8000000 ||
-          "Image size should be less than 8 MB"
-      ]
+          "Image size should be less than 8 MB",
+      ],
     };
   },
   validations: {
@@ -297,38 +298,38 @@ export default {
       phone: {
         required,
         numeric,
-        minLength: minLength(7)
+        minLength: minLength(7),
       },
       occupation: {
         required,
-        maxLength: maxLength(50)
+        maxLength: maxLength(50),
       },
       listingType: {
-        required
+        required,
       },
       summary: {
         required,
-        maxLength: maxLength(250)
+        maxLength: maxLength(250),
       },
       yearsExperience: {
-        numeric
+        numeric,
       },
       website: {
-        url
+        url,
       },
       facebookLink: {
-        url
+        url,
       },
       instagramLink: {
-        url
+        url,
       },
       youtubeLink: {
-        url
+        url,
       },
       twitterLink: {
-        url
-      }
-    }
+        url,
+      },
+    },
   },
   mounted() {
     this.getListing();
@@ -421,7 +422,7 @@ export default {
           errors.push("Invalid Twitter URL.");
       }
       return errors;
-    }
+    },
   },
 
   methods: {
@@ -436,9 +437,9 @@ export default {
       const URL_ENDPOINT = "http://localhost:3000/listing/myListing/";
       axios
         .post(`${URL_ENDPOINT}`, {
-          email: this.user.email
+          email: this.user.email,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             this.listing = response.data;
             this.existingListing = true;
@@ -482,9 +483,9 @@ export default {
           instagramLink: this.listing.instagramLink,
           youtubeLink: this.listing.youtubeLink,
           twitterLink: this.listing.twitterLink,
-          profilePicture: this.listing.profilePicture
+          profilePicture: this.listing.profilePicture,
         })
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             this.message = "Your listing has been updated.";
           } else {
@@ -501,7 +502,7 @@ export default {
 
       axios
         .delete(`${URL_ENDPOINT}${this.listing._id}`)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             this.message = "Your listing has been deleted.";
             this.existingListing = false;
@@ -516,8 +517,8 @@ export default {
     },
     logger() {
       console.log(this.listing);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -8,9 +8,8 @@
         hide-delimiters
         dark
         height="800"
-        interval="10000"
+        interval="15000"
       >
-        <!-- keep interval at 15sec -->
         <v-carousel-item>
           <v-img src="../../public/slide1.jpg" class="d-sm-flex" height="100%">
             <v-row class="mt-16" justify="center" align="center">
@@ -46,8 +45,9 @@
         </v-carousel-item>
         <v-carousel-item>
           <v-img src="../../public/slide5.jpg" height="100%"></v-img>
-        </v-carousel-item> </v-carousel
-    ></v-row>
+        </v-carousel-item>
+      </v-carousel>
+    </v-row>
   </v-container>
 </template>
 
@@ -58,11 +58,11 @@ export default {
       images: [
         {
           src:
-            "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80"
-        }
-      ]
+            "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80",
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 

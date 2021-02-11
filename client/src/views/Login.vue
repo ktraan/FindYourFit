@@ -1,10 +1,5 @@
 <template>
   <v-container>
-    <!-- <v-row class="d-flex justify-center">
-      <v-alert v-if="error" type="error" class="text-center mt-5" width="700">
-        {{ error }}
-      </v-alert>
-    </v-row> -->
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-row class="justify-center mb-10 mt-5">
         <v-card class="pa-5 mt-5 " width="730" height="500" elevation="12">
@@ -66,7 +61,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
 export default {
@@ -77,19 +71,18 @@ export default {
       email: "",
       password: "",
 
-      valid: true
+      valid: true,
     };
   },
   validations: {
     email: {
-      required
+      required,
     },
     password: {
-      required
-    }
+      required,
+    },
   },
   computed: {
-    // ...mapGetters("auth", ["status"]),
     userIsLoggedIn: function() {
       return this.$store.state.isLoggedIn;
     },
@@ -106,7 +99,7 @@ export default {
         if (!this.$v.password.required) errors.push("Password is required.");
       }
       return errors;
-    }
+    },
   },
   methods: {
     ...mapActions("auth", ["login"]),
@@ -115,38 +108,21 @@ export default {
     },
     login() {
       this.$v.$touch();
-      // try {
-      //   let data = {
-      //     email: this.email,
-      //     password: this.password
-      //   };
-      //   const res = await this.login(data);
-      //   if (res) {
-      //     if (res.status === 200 || res.status === 201) {
-      //       this.$router.push("dashboard");
-      //     } else {
-      //       this.error = "There was problem logging in. Please try again.";
-      //     }
-      //   }
-      // } catch (error) {
-      //   this.error = "There was a problem loggin in. Please try again.";
-      // }
-
       let data = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       this.$store
         .dispatch("login", data)
         .then(() => {})
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         })
         .then(() => {
           this.$router.push("dashboard");
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

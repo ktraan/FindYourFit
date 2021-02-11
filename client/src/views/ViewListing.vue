@@ -12,7 +12,8 @@
               :src="listing.profilePicture"
               transition="fade-transition"
               max-width="600"
-            ></v-img>
+            >
+            </v-img>
           </v-col>
           <v-col md="" class="">
             <v-row>
@@ -118,8 +119,9 @@
         class="mt-5 amber darken-2 text-h6 text-capitalize font-weight-regular"
         elevation="3"
         @click="allListings"
-        >Back To Listings</v-btn
       >
+        Back To Listings
+      </v-btn>
     </v-row>
   </v-container>
 </template>
@@ -141,7 +143,7 @@ export default {
       errors: "",
       listing: {},
       fullName: "",
-      email: ""
+      email: "",
     };
   },
   mounted() {
@@ -154,12 +156,12 @@ export default {
 
       axios
         .get(`${URL_ENDPOINT}${listingId}`)
-        .then(response => {
+        .then((response) => {
           this.listing = response.data;
           this.fullName = `${response.data.creator.firstName} ${response.data.creator.lastName}`;
           this.email = response.data.creator.email;
         })
-        .catch(error => {
+        .catch((error) => {
           this.errors = "There was a problem getting this listing";
           console.log(error);
         });
@@ -167,11 +169,7 @@ export default {
     allListings() {
       this.$router.push({ name: "listings" });
     },
-    logger() {
-      console.log(this.listing);
-      // console.log(this.$route.params.id);
-    }
-  }
+  },
 };
 </script>
 

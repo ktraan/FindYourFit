@@ -3,30 +3,24 @@
     <v-row class="d-flex justify-center">
       <v-card flat tile class="amber darken-2">
         <v-row class="justify-center mt-3">
-          <a
-            href="/"
-            class="text-decoration-none white--text text-h6 mt-3 font-weight-light"
-          >
-            Home
-          </a>
-          <a
-            href="/login"
+          <router-link
+            to="/login"
             class="text-decoration-none white--text text-h6 mt-3 ml-5 font-weight-light"
           >
             Login
-          </a>
-          <a
-            href="/register"
+          </router-link>
+          <router-link
+            to="/register"
             class="text-decoration-none white--text text-h6 mt-3 ml-5 font-weight-light"
           >
             Register
-          </a>
-          <a
-            href="/"
+          </router-link>
+          <router-link
+            to="/"
             class="text-decoration-none white--text text-h6 mt-3 ml-5 font-weight-light"
           >
             Contact
-          </a>
+          </router-link>
         </v-row>
         <v-card-text>
           <v-btn

@@ -91,7 +91,6 @@
                 color="amber darken-2"
               >
               </v-select>
-              <!-- Max 300 char -->
               <v-textarea
                 v-model="listing.summary"
                 :error-messages="summaryErrors"
@@ -145,16 +144,6 @@
                   color="amber darken-2"
                 >
                 </v-text-field>
-                <!-- <v-text-field
-                  v-model="listing.email"
-                  :error-messages="emailErrors"
-                  @blur="$v.listing.email.$touch()"
-                  name="email"
-                  label="Email"
-                  prepend-icon="mdi-email"
-                  color="amber darken-2"
-                >
-                </v-text-field> -->
                 <v-text-field
                   v-model="listing.website"
                   :error-messages="websiteErrors"
@@ -230,11 +219,9 @@
                   Submit
                 </v-btn>
               </v-row>
-              <!-- <v-spacer class="mt-16"></v-spacer> -->
             </v-col>
           </v-row>
         </v-card>
-        <!-- <v-btn @click="logger">Logger</v-btn> -->
       </v-row>
     </v-container>
   </v-form>
@@ -246,8 +233,7 @@ import {
   minLength,
   maxLength,
   numeric,
-  // email,
-  url
+  url,
 } from "vuelidate/lib/validators";
 import { mapGetters } from "vuex";
 import axios from "axios";
@@ -265,20 +251,19 @@ export default {
         listingType: "",
         summary: "",
         phone: "",
-        // email: "",
         website: "",
         facebookField: "",
         instagramField: "",
         youtubeField: "",
-        twitterField: ""
+        twitterField: "",
       },
 
       fileInput: "",
       imagesize: [
-        value =>
+        (value) =>
           !value ||
           value.size < 8000000 ||
-          "Image size should be less than 8 MB"
+          "Image size should be less than 8 MB",
       ],
 
       listingTypeItems: [
@@ -287,8 +272,8 @@ export default {
         "Group Exercise",
         "Yoga",
         "Nutritionist",
-        "Health & Wellness"
-      ]
+        "Health & Wellness",
+      ],
     };
   },
   validations: {
@@ -296,42 +281,38 @@ export default {
       phone: {
         required,
         numeric,
-        minLength: minLength(7)
+        minLength: minLength(7),
       },
-      // email: {
-      //   required,
-      //   email
-      // },
       occupation: {
         required,
-        maxLength: maxLength(50)
+        maxLength: maxLength(50),
       },
       listingType: {
-        required
+        required,
       },
       summary: {
         required,
-        maxLength: maxLength(250)
+        maxLength: maxLength(250),
       },
       yearsExperience: {
-        numeric
+        numeric,
       },
       website: {
-        url
+        url,
       },
       facebookField: {
-        url
+        url,
       },
       instagramField: {
-        url
+        url,
       },
       youtubeField: {
-        url
+        url,
       },
       twitterField: {
-        url
-      }
-    }
+        url,
+      },
+    },
   },
   computed: {
     ...mapGetters(["user"]),
@@ -347,17 +328,6 @@ export default {
       }
       return errors;
     },
-    // emailErrors() {
-    //   const errors = [];
-    //   if (this.$v.listing.email.$dirty) {
-    //     if (!this.$v.listing.email.required) errors.push("Email is required.");
-    //   }
-    //   if (this.$v.listing.email.$dirty) {
-    //     if (!this.$v.listing.email.email)
-    //       errors.push("Invalid email format. ex: findyourfit@gmail.com.");
-    //   }
-    //   return errors;
-    // },
     occupationErrors() {
       const errors = [];
       if (this.$v.listing.occupation.$dirty) {
@@ -432,7 +402,7 @@ export default {
           errors.push("Invalid Twitter URL.");
       }
       return errors;
-    }
+    },
   },
   methods: {
     changeImage(file) {
@@ -476,31 +446,25 @@ export default {
             instagramLink: this.listing.instagramField,
             youtubeLink: this.listing.youtubeField,
             twitterLink: this.listing.twitterField,
-            profilePicture: this.image
+            profilePicture: this.image,
           })
-          .then(response => {
+          .then((response) => {
             if (response.status === 201 || response.status === 200) {
               this.$router.push("listings");
-              // console.log(response);
               console.log(response.status);
             } else {
               this.errors =
                 "There was a problem creating the listing, Please try again.";
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
             this.errors =
               "There was a problem creating the listing, Please try again.";
           });
       }
     },
-    logger() {
-      // console.log(this.user._id);
-      // console.log(this.image);
-      // console.log(this.listing);
-    }
-  }
+  },
 };
 </script>
 
