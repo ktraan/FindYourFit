@@ -4,18 +4,18 @@
     <v-row class="d-flex justify-center">
       <v-card flat tile class="amber darken-2">
         <v-row class="justify-center mt-3">
-          <a
-            href="/"
+          <router-link
+            to="/dashboard"
             class="text-decoration-none white--text text-h6 mt-3 font-weight-light"
           >
             Home
-          </a>
-          <a
-            href="/"
+          </router-link>
+          <router-link
+            to="/dashboard"
             class="text-decoration-none white--text text-h6 mt-3 ml-5 font-weight-light"
           >
             Contact
-          </a>
+          </router-link>
         </v-row>
         <v-card-text>
           <v-btn

@@ -8,7 +8,7 @@
         hide-delimiters
         dark
         height="800"
-        interval="15000"
+        interval="20000"
       >
         <v-carousel-item>
           <v-img src="../../public/slide1.jpg" class="d-sm-flex" height="100%">
@@ -36,9 +36,6 @@
               >
             </v-row>
           </v-img>
-        </v-carousel-item>
-        <v-carousel-item>
-          <v-img src="../../public/slide2.jpg" height="100%"></v-img>
         </v-carousel-item>
         <v-carousel-item>
           <v-img src="../../public/slide4.jpg" height="100%"></v-img>
