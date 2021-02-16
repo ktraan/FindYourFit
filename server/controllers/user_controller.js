@@ -26,26 +26,45 @@ const getSingleUser = async (req, res) => {
 };
 
 createUser = async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10);
-  const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: hashedPassword,
-    gender: req.body.gender,
-    location: req.body.location,
-    birthday: req.body.birthday,
-  });
+  try {
+    // Using a custom callback to search for an existing user first
+    const user = await User.findOne({ email: req.body.email }, async function (
+      error,
+      existingUser
+    ) {
+      // If existing user, do not allow them to register
+      if (existingUser) {
+        res.status(400).json({
+          message: `User with the email: ${existingUser.email} already exists.`,
+        });
+      } else {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const newUser = new User({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          password: hashedPassword,
+          gender: req.body.gender,
+          location: req.body.location,
+          birthday: req.body.birthday,
+        });
 
-  User.create(user)
-    .then((data) => {
-      console.log('User has been created!');
-      res.status(201).json(data);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
+        User.create(newUser)
+          .then((data) => {
+            console.log('User has been created');
+            res.status(201).json(data);
+          })
+          .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+              message: `There was a problem registering, Please correct the fields and try again.`,
+            });
+          });
+      }
     });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal Server Error.' });
+  }
 };
 
 login = async (req, res) => {
@@ -53,7 +72,7 @@ login = async (req, res) => {
     const user = await User.findOne({ email: req.body.email }).exec();
     if (!user) {
       res.status(400).json({
-        message: `The user with the email ${req.body.email} does not exist. Please register before logging in.`,
+        message: `The user with the email: ${req.body.email} does not exist. Please register before logging in.`,
       });
     } else if (!bcrypt.compareSync(req.body.password, user.password)) {
       res

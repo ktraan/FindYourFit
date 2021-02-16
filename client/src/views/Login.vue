@@ -5,12 +5,13 @@
         v-if="this.$store.state.auth.error"
         dense
         outlined
-        class="text-center"
+        max-width="1000"
+        class="text-center mt-5 ml-auto mr-auto"
         type="error"
         >{{ this.$store.state.auth.error }}</v-alert
       >
       <v-row class="justify-center mb-10 mt-5">
-        <v-card class="pa-5 mt-5 " width="730" height="500" elevation="12">
+        <v-card class="pa-5" width="730" height="500" elevation="12">
           <v-row class="justify-center">
             <div class="text-h4 d-flex justify-center mt-5">Login</div>
           </v-row>
@@ -26,6 +27,7 @@
             @blur="$v.email.$touch()"
             class="ml-auto mr-auto mt-5"
             name="email"
+            color="amber darken-2"
             label="Email Address"
             dense
             outlined
@@ -38,6 +40,7 @@
             class="ml-auto mr-auto"
             :type="'password'"
             name="password"
+            color="amber darken-2"
             label="Password"
             dense
             outlined
@@ -123,14 +126,11 @@ export default {
       };
 
       // Send the request
-      await this.$store.dispatch("login", data);
-
-      // Check to see if there is any errors
-      if (!this.$store.getters.error) {
-        // Send request again if good credentials
-        await this.$store.dispatch("login", data);
-        this.$router.push("/dashboard");
-      }
+      await this.$store.dispatch("login", data).then(response => {
+        if (response.status === 200) {
+          this.$router.push("/dashboard");
+        }
+      });
     }
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import axios from 'axios';
 
 const state = {
@@ -22,8 +23,6 @@ const actions = {
     try {
       const res = await axios.post('http://localhost:3000/register', user);
       if (res.status === 201) {
-        // console.log(res);
-        // console.log(res.data);
         const user = res.data;
         commit('auth_success', user);
       } else {
@@ -71,6 +70,7 @@ const mutations = {
   },
   auth_error(state, payload) {
     state.status = 'failed';
+    state.loggedIn = false;
     state.error = payload.data.message;
   },
   logout(state) {
