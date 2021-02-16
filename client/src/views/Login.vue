@@ -1,6 +1,14 @@
 <template>
   <v-container>
     <v-form ref="form" v-model="valid" lazy-validation>
+      <v-alert
+        v-if="this.$store.state.auth.error"
+        dense
+        outlined
+        class="text-center"
+        type="error"
+        >{{ this.$store.state.auth.error }}</v-alert
+      >
       <v-row class="justify-center mb-10 mt-5">
         <v-card class="pa-5 mt-5 " width="730" height="500" elevation="12">
           <v-row class="justify-center">
@@ -63,6 +71,7 @@
 <script>
 import { required } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
+
 export default {
   name: "login",
   data() {
@@ -71,16 +80,16 @@ export default {
       email: "",
       password: "",
 
-      valid: true,
+      valid: true
     };
   },
   validations: {
     email: {
-      required,
+      required
     },
     password: {
-      required,
-    },
+      required
+    }
   },
   computed: {
     userIsLoggedIn: function() {
@@ -99,30 +108,31 @@ export default {
         if (!this.$v.password.required) errors.push("Password is required.");
       }
       return errors;
-    },
+    }
   },
   methods: {
     ...mapActions("auth", ["login"]),
     reset() {
       this.$refs.form.reset();
     },
-    login() {
+    async login() {
       this.$v.$touch();
       let data = {
         email: this.email,
-        password: this.password,
+        password: this.password
       };
-      this.$store
-        .dispatch("login", data)
-        .then(() => {})
-        .catch((err) => {
-          console.log(err);
-        })
-        .then(() => {
-          this.$router.push("dashboard");
-        });
-    },
-  },
+
+      // Send the request
+      await this.$store.dispatch("login", data);
+
+      // Check to see if there is any errors
+      if (!this.$store.getters.error) {
+        // Send request again if good credentials
+        await this.$store.dispatch("login", data);
+        this.$router.push("/dashboard");
+      }
+    }
+  }
 };
 </script>
 

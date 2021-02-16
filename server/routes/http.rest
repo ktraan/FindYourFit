@@ -2,7 +2,17 @@ GET http://localhost:3000/listing
 
 ###
 
-GET http://localhost:3000/listing/5ff783244281af5e6c01cd49
+GET http://localhost:3000/listing/60076c497b9a195d3090f23e
+
+###
+
+POST http://localhost:3000/listing/myListing
+Content-Type: application/json
+
+{
+    "email": "juantomany@hotmail.com"
+}
+
 
 ###
 
@@ -21,7 +31,20 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/user/5fc7110f85957667585e7ab0
+PUT http://localhost:3000/listing/60076c497b9a195d3090f23e
+Content-Type: application/json
+
+{
+    "phone": "7807777777"
+}
+
+###
+
+DELETE http://localhost:3000/listing/60131024c0847a288426edf1
+
+###
+
+GET http://localhost:3000/user/
 
 ###
 
@@ -41,7 +64,6 @@ POST http://localhost:3000/register
 Content-Type: application/json
 
 {
-    "username": "kevin",
     "firstName": "kevin",
     "lastName": "kevin",
     "email": "kevin@kevin.com",
