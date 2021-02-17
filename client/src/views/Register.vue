@@ -19,133 +19,129 @@
             Please fill out your details to register now.
           </div>
           <v-divider class="mx-4 mt-3"></v-divider>
-          <v-row class="d-flex justify-space-between mt-3">
-            <v-row class="pl-9 pr-9">
-              <v-text-field
-                v-model.trim="user.firstName"
-                :rules="firstNameRules"
-                name="firstName"
-                label="First Name"
-                dense
-                color="amber darken-2"
-                outlined
-              >
-              </v-text-field>
 
-              <v-text-field
-                v-model.trim="user.lastName"
-                :rules="lastNameRules"
-                name="lastName"
-                class="ml-6"
-                dense
-                color="amber darken-2"
-                label="Last Name"
-                outlined
-              >
-              </v-text-field>
-            </v-row>
-            <v-row class="pr-9 pl-9">
-              <v-text-field
-                v-model.trim="user.email"
-                :rules="emailRules"
-                name="email"
-                dense
-                color="amber darken-2"
-                label="Email Address"
-                hint="eg. fyf@gmail.com"
-                outlined
-              >
-              </v-text-field>
-              <v-text-field
-                v-model.trim="user.birthday"
-                name="birthday"
-                :rules="birthdayRules"
-                dense
-                label="Date of Birth"
-                class="ml-6"
-                color="amber darken-2"
-                hint="eg. 1990-01-30"
-                outlined
-                required
-              >
-              </v-text-field>
-            </v-row>
+          <v-row class="pl-9 pr-9">
+            <v-text-field
+              v-model.trim="user.firstName"
+              :rules="firstNameRules"
+              name="firstName"
+              label="First Name"
+              dense
+              color="amber darken-2"
+              outlined
+            >
+            </v-text-field>
 
-            <v-row class="pl-9 pr-9">
-              <v-text-field
-                v-model.trim="user.password"
-                :rules="passwordRules"
-                name="password"
-                dense
-                color="amber darken-2"
-                label="Password"
-                outlined
-                required
-              >
-              </v-text-field>
-              <!-- TODO: Compare this input with other password -->
-              <v-text-field
-                v-model="confirmedPassword"
-                :rules="confirmedPasswordRules"
-                dense
-                class="ml-6"
-                name="confirmedPassword"
-                label="Confirm Password"
-                outlined
-                required
-                color="amber darken-2"
-              >
-              </v-text-field>
-            </v-row>
-            <v-row class="pl-9 pr-9">
-              <v-radio-group
-                v-model="genderGroup"
-                class="ml-1"
-                label="Sex:"
-                color="amber darken-2"
-                row
-                dense
-              >
-                <v-radio :value="'Male'" label="Male" color="blue darken-1">
-                </v-radio>
-                <v-radio
-                  :value="'Female'"
-                  label="Female"
-                  color="pink lighten-3"
-                >
-                </v-radio>
-                <v-radio :value="'Other'" label="Other" color="purple accent-4">
-                </v-radio>
-              </v-radio-group>
-              <v-text-field
-                v-model.trim="user.location"
-                :rules="locationRules"
-                dense
-                class="ml-8"
-                label="Location"
-                color="amber darken-2"
-                hint="eg. Edmonton, AB"
-                outlined
-              >
-              </v-text-field>
-            </v-row>
+            <v-text-field
+              v-model.trim="user.lastName"
+              :rules="lastNameRules"
+              name="lastName"
+              class="ml-6"
+              dense
+              color="amber darken-2"
+              label="Last Name"
+              outlined
+            >
+            </v-text-field>
+          </v-row>
+          <v-row class="pr-9 pl-9">
+            <v-text-field
+              v-model.trim="user.email"
+              :rules="emailRules"
+              name="email"
+              dense
+              color="amber darken-2"
+              label="Email Address"
+              hint="eg. fyf@gmail.com"
+              outlined
+            >
+            </v-text-field>
+            <v-text-field
+              v-model.trim="user.birthday"
+              name="birthday"
+              :rules="birthdayRules"
+              dense
+              label="Date of Birth"
+              class="ml-6"
+              color="amber darken-2"
+              hint="eg. 1990-01-30"
+              outlined
+              required
+            >
+            </v-text-field>
+          </v-row>
 
-            <v-row justify="end">
-              <v-btn class="text-capitalize text-h6" text href="/"
-                >Cancel
-              </v-btn>
-              <v-btn class="text-capitalize text-h6" text @click="reset"
-                >Clear
-              </v-btn>
-              <v-btn
-                :disabled="!valid"
-                class=" text-capitalize text-h6 ml-3 mr-5"
-                text
-                @click="createUser"
-              >
-                Submit
-              </v-btn>
-            </v-row>
+          <v-row class="pr-9 pl-9">
+            <v-text-field
+              v-model.trim="user.password"
+              :rules="passwordRules"
+              name="password"
+              type="password"
+              dense
+              color="amber darken-2"
+              label="Password"
+              outlined
+              required
+            >
+            </v-text-field>
+            <!-- TODO: Compare this input with other password -->
+            <v-text-field
+              v-model="confirmedPassword"
+              :rules="confirmedPasswordRules"
+              dense
+              class="ml-6"
+              name="confirmedPassword"
+              type="password"
+              label="Confirm Password"
+              outlined
+              required
+              color="amber darken-2"
+            >
+            </v-text-field>
+          </v-row>
+
+          <v-row class="pr-9 pl-9">
+            <v-radio-group
+              v-model="genderGroup"
+              class="ml-1"
+              label="Sex:"
+              color="amber darken-2"
+              row
+              dense
+            >
+              <v-radio :value="'Male'" label="Male" color="blue darken-1">
+              </v-radio>
+              <v-radio :value="'Female'" label="Female" color="pink lighten-3">
+              </v-radio>
+              <v-radio :value="'Other'" label="Other" color="purple accent-4">
+              </v-radio>
+            </v-radio-group>
+            <v-text-field
+              v-model.trim="user.location"
+              :rules="locationRules"
+              dense
+              class="ml-5"
+              label="Location"
+              color="amber darken-2"
+              hint="eg. Edmonton, AB"
+              outlined
+            >
+            </v-text-field>
+          </v-row>
+
+          <v-row justify="end">
+            <v-btn class="text-capitalize text-h6" text href="/">Cancel </v-btn>
+            <v-btn class="text-capitalize text-h6" text @click="reset"
+              >Clear
+            </v-btn>
+            <v-btn
+              :disabled="!valid"
+              class=" text-capitalize text-h6 ml-3 mr-5"
+              text
+              @click="createUser"
+            >
+              Submit
+            </v-btn>
           </v-row>
         </v-card>
       </v-row>
@@ -189,7 +185,7 @@ export default {
       ],
       passwordRules: [
         pw => !!pw || "Password Required",
-        pw => (pw && pw.length >= 8) || "Password must be at least 8 characters"
+        pw => (pw && pw.length >= 8) || "Password minimum 8 characters"
       ],
       confirmedPasswordRules: [pw => !!pw || "Password Required"],
       emailRules: [
@@ -200,6 +196,7 @@ export default {
       birthdayRules: [bday => !!bday || "Birthday Required"]
     };
   },
+  computed: {},
   methods: {
     ...mapActions("auth", ["register"]),
     submit() {
@@ -232,8 +229,7 @@ export default {
         }
       });
     }
-  },
-  computed: {}
+  }
 };
 </script>
 

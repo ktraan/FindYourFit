@@ -6,7 +6,6 @@ if (process.env.NODE_ENV !== 'production') {
 // Importing required modules
 const cors = require('cors');
 const express = require('express');
-const passport = require('passport');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -35,8 +34,6 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.set('view engine', 'html');
 
