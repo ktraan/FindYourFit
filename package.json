@@ -1,0 +1,24 @@
+{
+  "name": "findyourfit",
+  "version": "1.0.0",
+  "description": "Fitness Networking Web Application",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "vuetify-loader": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktraan/FindYourFit.git"
+  },
+  "author": "Kevin Tran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ktraan/FindYourFit/issues"
+  },
+  "homepage": "https://github.com/ktraan/FindYourFit#readme"
+}
