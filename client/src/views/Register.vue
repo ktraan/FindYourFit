@@ -212,22 +212,22 @@ export default {
     async createUser() {
       this.$refs.form.validate();
 
-      let data = {
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        email: this.user.email,
-        password: this.user.password,
-        gender: this.genderGroup,
-        location: this.user.location,
-        birthday: this.user.birthday
-      };
-
       // Send request
-      await this.$store.dispatch("register", data).then(response => {
-        if (response.status === 201 || response.status === 200) {
-          this.$router.push("/dashboard");
-        }
-      });
+      await this.$store
+        .dispatch("register", {
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
+          email: this.user.email,
+          password: this.user.password,
+          gender: this.genderGroup,
+          location: this.user.location,
+          birthday: this.user.birthday
+        })
+        .then(response => {
+          if (response.status === 201 || response.status === 200) {
+            this.$router.push("/dashboard");
+          }
+        });
     }
   }
 };
