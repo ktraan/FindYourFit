@@ -4,11 +4,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Importing required modules
-const cors = require('cors');
 const express = require('express');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // Routes
 const userRouter = require('./routes/user');
