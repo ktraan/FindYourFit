@@ -22,10 +22,12 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
+// Serving static files
 const staticFileMiddleware = express.static(
   path.join(__dirname + '/client/dist')
 );
 
+// SPA middleware for HTML5 History Mode
 app.use(staticFileMiddleware);
 app.use(history());
 app.use(staticFileMiddleware);
