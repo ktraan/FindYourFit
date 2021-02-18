@@ -21,8 +21,9 @@ const listingRouter = require('./server/routes/listing');
 const port = process.env.PORT || 3000;
 
 const app = express();
+
 const staticFileMiddleware = express.static(
-  path.join(__dirname + 'client/dist')
+  path.join(__dirname + '/client/dist')
 );
 
 app.use(staticFileMiddleware);
