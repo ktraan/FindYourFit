@@ -12,10 +12,10 @@ const cors = require('cors');
 const history = require('connect-history-api-fallback');
 
 // Routes
-const userRouter = require('../FindYourFit/server/routes/user');
-const registerRouter = require('../FindYourFit/server/routes/register');
-const loginRouter = require('../FindYourFit/server/routes/login');
-const listingRouter = require('../FindYourFit/server/routes/listing');
+const userRouter = require('./server/routes/user');
+const registerRouter = require('./server/routes/register');
+const loginRouter = require('./server/routes/login');
+const listingRouter = require('./server/routes/listing');
 
 // Configuring port
 const port = process.env.PORT || 3000;
