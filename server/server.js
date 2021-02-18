@@ -9,6 +9,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const history = require('connect-history-api-fallback');
 
 // Routes
 const userRouter = require('./routes/user');
@@ -34,6 +35,7 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: true }));
+app.use(history());
 
 app.set('view engine', 'html');
 
