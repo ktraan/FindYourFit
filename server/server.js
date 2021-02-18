@@ -40,7 +40,7 @@ app.use(history());
 app.set('view engine', 'html');
 
 // Static folder
-app.use(express.static(__dirname + '/views/'));
+app.use(express.static('../client/dist/'));
 
 // Database connection
 mongoose.connect(process.env.DATABASE_URL, {
