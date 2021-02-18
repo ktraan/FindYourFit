@@ -23,7 +23,6 @@ const actions = {
     try {
       const res = await axios.post('http://localhost:3000/register', user);
       if (res.status === 201) {
-        const user = res.data;
         commit('auth_success', user);
       } else {
         commit('auth_error', res.data);
