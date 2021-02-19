@@ -1,6 +1,9 @@
 // Load out .env file if we are in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+  API = 'http://localhost:3000';
+} else if (process.env.NODE_ENV === 'production') {
+  API = 'https://find-your-fit.herokuapp.com/';
 }
 
 // Importing required modules

@@ -1,6 +1,10 @@
 // Load out .env file if we are in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+  API = 'http://localhost:3000';
+  DATABASE_URL = 'mongodb://localhost/FindYourFit';
+} else if (process.env.NODE_ENV === 'production') {
+  API = 'https://find-your-fit.herokuapp.com/';
 }
 
 const express = require('express');
@@ -50,6 +54,7 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 
+// process.env.DATABASE_URL
 // Database connection
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
@@ -72,5 +77,7 @@ app.use('/listing', listingRouter);
 // Listening to port
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
+console.log(API);
+console.log(DATABASE_URL);
 
 module.exports = app;
