@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 
-const port = process.env.PORT || '3000';
 let BASE_URL;
 if (process.env.NODE_ENV === 'production') {
   BASE_URL = 'https://find-your-fit.herokuapp.com/';
