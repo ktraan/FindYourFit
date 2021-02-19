@@ -27,9 +27,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // Serving static files
-const staticFileMiddleware = express.static(
-  path.join(__dirname + '/client/dist')
-);
+const staticFileMiddleware = express.static(path.join('/client/dist'));
 
 // SPA middleware for HTML5 History Mode
 app.use(staticFileMiddleware);
@@ -37,7 +35,7 @@ app.use(history());
 app.use(staticFileMiddleware);
 
 app.get('/', function (req, res) {
-  res.render(path.join(__dirname + '/client/dist/index.html'));
+  res.render('/client/dist/index.html');
 });
 
 // Configure middlewares
