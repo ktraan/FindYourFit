@@ -78,6 +78,5 @@ app.use('/listing', listingRouter);
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
 console.log(API);
-console.log(DATABASE_URL);
 
 module.exports = app;
