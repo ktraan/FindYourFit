@@ -2,7 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 } else if (process.env.NODE_ENV === 'production') {
-  API = 'https://find-your-fit.herokuapp.com/';
+  VUE_APP_API = 'https://find-your-fit.herokuapp.com/';
 }
 
 const express = require('express');
@@ -78,5 +78,6 @@ console.log(`Listening On http://localhost:${port}`);
 console.log(process.env.DATABASE_URL);
 console.log(process.env.NODE_ENV);
 console.log(process.env.VUE_APP_API);
+console.log(process.env.PORT);
 
 module.exports = app;
