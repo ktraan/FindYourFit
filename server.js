@@ -1,8 +1,6 @@
 // Load out .env file if we are in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-} else if (process.env.NODE_ENV === 'production') {
-  process.env.VUE_APP_API = `https://localhost/${port}`;
 }
 
 const express = require('express');
@@ -21,6 +19,10 @@ const listingRouter = require('./routes/listing');
 
 // Configuring port
 const port = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV === 'production') {
+  process.env.VUE_APP_API = `https://localhost/${port}`;
+}
 
 const app = express();
 
