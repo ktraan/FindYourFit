@@ -200,11 +200,6 @@ export default {
   computed: {},
   methods: {
     ...mapActions("auth", ["register"]),
-    log() {
-      console.log(process.env.DATABASE_URL);
-      console.log(process.env.PORT);
-      console.log(process.env.VUE_APP_API);
-    },
     submit() {
       this.$refs.form.validate();
     },

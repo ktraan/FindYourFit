@@ -2,9 +2,6 @@
 import axios from 'axios';
 import http from '../../utils/http';
 
-// const PROD_BASE_URL = 'https://find-your-fit.herokuapp.com/';
-// const port = process.env.PORT || 3000;
-
 const state = {
   status: '',
   // token: localStorage.getItem("token") || "",
@@ -25,7 +22,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await http.post(`/register`, user);
+      const res = await axios.post(`${process.env.VUE_APP_API}/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -40,7 +37,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await http.post(`/login`, user);
+      const res = await axios.post(`${process.env.VUE_APP_API}/login`, user);
       if (res.status === 200 || res.status === 201) {
         commit('auth_success', user);
       } else {
