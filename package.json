@@ -2,7 +2,7 @@
   "name": "findyourfit",
   "version": "1.0.0",
   "description": "Fitness Networking Web Application",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
@@ -13,11 +13,13 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.11.17",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
     "vuetify-loader": "^1.6.0"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
+    "devServe": "nodemon server.js",
     "test": ""
   },
   "repository": {

@@ -1,8 +1,6 @@
 // Load out .env file if we are in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-  API = 'http://localhost:3000';
-  DATABASE_URL = 'mongodb://localhost/FindYourFit';
 } else if (process.env.NODE_ENV === 'production') {
   API = 'https://find-your-fit.herokuapp.com/';
 }
@@ -70,13 +68,13 @@ db.once('open', () => {
 
 // Defining route middleware
 app.use('/user', userRouter);
-app.use('/register', registerRouter);
-app.use('/login', loginRouter);
+app.use('/user/register', registerRouter);
+app.use('/user/login', loginRouter);
 app.use('/listing', listingRouter);
 
 // Listening to port
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
-console.log(API);
-
+console.log(process.env.DATABASE_URL);
+console.log(process.env.API);
 module.exports = app;
