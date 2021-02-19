@@ -76,5 +76,4 @@ app.use('/listing', listingRouter);
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
 console.log(process.env.DATABASE_URL);
-console.log(process.env.API);
 module.exports = app;
