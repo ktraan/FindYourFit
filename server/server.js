@@ -12,6 +12,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const path = require('path');
 const history = require('connect-history-api-fallback');
 
 // Routes
@@ -24,6 +25,20 @@ const listingRouter = require('./routes/listing');
 const port = process.env.PORT || 3000;
 
 const app = express();
+
+// Serving static files
+const staticFileMiddleware = express.static(
+  path.join(__dirname + '/client/dist')
+);
+
+// SPA middleware for HTML5 History Mode
+app.use(staticFileMiddleware);
+app.use(history());
+app.use(staticFileMiddleware);
+
+app.get('/', function (req, res) {
+  res.render(path.join(__dirname + '/client/dist/index.html'));
+});
 
 // Configure middlewares
 app.use(morgan('tiny'));
@@ -43,7 +58,7 @@ app.use(history());
 app.set('view engine', 'html');
 
 // Static folder
-app.use(express.static(__dirname + '/client/dist/'));
+// app.use(express.static(__dirname + '/client/dist/'));
 
 // Database connection
 mongoose.connect(process.env.DATABASE_URL, {
@@ -67,5 +82,6 @@ app.use('/listing', listingRouter);
 // Listening to port
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
+console.log(process.env.DATABASE_URL);
 
 module.exports = app;
