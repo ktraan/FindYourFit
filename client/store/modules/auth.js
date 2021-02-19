@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
+import http from '../../axios.config.js';
 
 const state = {
   status: '',
@@ -21,7 +22,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`/register`, user);
+      const res = await http.post(`/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -35,7 +36,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`/login`, user);
+      const res = await http.post(`/login`, user);
       if (res.status === 200 || res.status === 201) {
         commit('auth_success', user);
       } else {
