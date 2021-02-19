@@ -21,7 +21,7 @@ const listingRouter = require('./routes/listing');
 const port = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === 'production') {
-  process.env.VUE_APP_API = `https://localhost:${port}`;
+  process.env.VUE_APP_API_ENDPOINT = `https://localhost:${port}`;
 }
 
 const app = express();
