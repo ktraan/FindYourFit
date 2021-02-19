@@ -22,7 +22,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await http.post(`/register`, user);
+      const res = await axios.post(`${process.env.VUE_APP_API}/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
