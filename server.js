@@ -52,7 +52,6 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 
-// process.env.DATABASE_URL
 // Database connection
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,

@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
-import http from '../../utils/http';
 
 const state = {
   status: '',
@@ -22,7 +21,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`${process.env.VUE_APP_API}/register`, user);
+      const res = await axios.post(`/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -31,13 +30,12 @@ const actions = {
       return res;
     } catch (error) {
       commit('auth_error', error.response);
-      return null;
     }
   },
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`${process.env.VUE_APP_API}/login`, user);
+      const res = await axios.post(`/login`, user);
       if (res.status === 200 || res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -46,7 +44,6 @@ const actions = {
       return res;
     } catch (error) {
       commit('auth_error', error.response);
-      return null;
     }
   },
 
