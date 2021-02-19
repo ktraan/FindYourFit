@@ -197,13 +197,17 @@ export default {
       birthdayRules: [bday => !!bday || "Birthday Required"]
     };
   },
+  mounted() {
+    console.log(process.env.VUE_APP_API_ENDPOINT);
+  },
   computed: {},
   methods: {
     ...mapActions("auth", ["register"]),
     log() {
       console.log(process.env.BASE_URL);
-      console.log(process.env.VUE_APP_API);
+      console.log(process.env.VUE_APP_API_ENDPOINT);
       console.log(process.env.NODE_ENV);
+      console.log(process.env);
     },
     submit() {
       this.$refs.form.validate();
