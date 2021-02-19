@@ -1,13 +1,6 @@
 /* eslint-disable prettier/prettier */
 import axios from 'axios';
 
-let BASE_URL;
-if (process.env.NODE_ENV === 'production') {
-  BASE_URL = 'https://find-your-fit.herokuapp.com/';
-} else if (process.env.NODE_ENV === 'development') {
-  BASE_URL = 'http://localhost:3000';
-}
-
 const state = {
   status: '',
   // token: localStorage.getItem("token") || "",
@@ -28,7 +21,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`${BASE_URL}/register`, user);
+      const res = await axios.post(`${process.env.VUE_APP_API}/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -43,7 +36,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`${BASE_URL}/login`, user);
+      const res = await axios.post(`${process.env.VUE_APP_API}/login`, user);
       if (res.status === 200 || res.status === 201) {
         const user = res.data;
         commit('auth_success', user);
