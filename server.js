@@ -1,8 +1,9 @@
 // Load out .env file if we are in development mode
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-} else if (process.env.NODE_ENV === 'production') {
-  API = 'https://find-your-fit.herokuapp.com/';
+}
+if (process.env.NODE_ENV === 'production') {
+  VUE_APP_API = 'https://find-your-fit.herokuapp.com/';
 }
 
 const express = require('express');
@@ -76,5 +77,4 @@ app.use('/listing', listingRouter);
 app.listen(port);
 console.log(`Listening On http://localhost:${port}`);
 console.log(process.env.DATABASE_URL);
-console.log(process.env.API);
 module.exports = app;
