@@ -2,7 +2,7 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 } else if (process.env.NODE_ENV === 'production') {
-  VUE_APP_API = 'https://find-your-fit.herokuapp.com/';
+  process.env.VUE_APP_API = 'https://find-your-fit.herokuapp.com/';
 }
 
 const express = require('express');

@@ -40,7 +40,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`/login`, user);
+      const res = await http.post(`/login`, user);
       if (res.status === 200 || res.status === 201) {
         commit('auth_success', user);
       } else {

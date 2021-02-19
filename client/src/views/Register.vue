@@ -143,6 +143,7 @@
               Submit
             </v-btn>
           </v-row>
+          <v-btn @click="log">log</v-btn>
         </v-card>
       </v-row>
     </v-container>
@@ -199,6 +200,11 @@ export default {
   computed: {},
   methods: {
     ...mapActions("auth", ["register"]),
+    log() {
+      console.log(process.env.DATABASE_URL);
+      console.log(process.env.PORT);
+      console.log(process.env.VUE_APP_API);
+    },
     submit() {
       this.$refs.form.validate();
     },
