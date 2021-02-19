@@ -14,10 +14,10 @@ const cors = require('cors');
 const history = require('connect-history-api-fallback');
 
 // Routes
-const userRouter = require('./server/routes/user');
-const registerRouter = require('./server/routes/register');
-const loginRouter = require('./server/routes/login');
-const listingRouter = require('./server/routes/listing');
+const userRouter = require('./routes/user');
+const registerRouter = require('./routes/register');
+const loginRouter = require('./routes/login');
+const listingRouter = require('./routes/listing');
 
 // Configuring port
 const port = process.env.PORT || 3000;
@@ -68,8 +68,8 @@ db.once('open', () => {
 
 // Defining route middleware
 app.use('/user', userRouter);
-app.use('/user/register', registerRouter);
-app.use('/user/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 app.use('/listing', listingRouter);
 
 // Listening to port
