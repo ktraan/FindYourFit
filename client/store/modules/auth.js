@@ -2,6 +2,9 @@
 import axios from 'axios';
 import http from '../../utils/http';
 
+// const PROD_BASE_URL = 'https://find-your-fit.herokuapp.com/';
+// const port = process.env.PORT || 3000;
+
 const state = {
   status: '',
   // token: localStorage.getItem("token") || "",
