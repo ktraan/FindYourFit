@@ -28,7 +28,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post('http://localhost:3000/register', user);
+      const res = await axios.post(`${BASE_URL}/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -43,7 +43,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post('http://localhost:3000/login', user);
+      const res = await axios.post(`${BASE_URL}/login`, user);
       if (res.status === 200 || res.status === 201) {
         const user = res.data;
         commit('auth_success', user);
