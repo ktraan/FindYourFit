@@ -21,10 +21,7 @@ const actions = {
   async register({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(
-        `${process.env.VUE_APP_API_ENDPOINT}/register`,
-        user
-      );
+      const res = await axios.post(`http://localhost:3000/register`, user);
       if (res.status === 201) {
         commit('auth_success', user);
       } else {
@@ -38,7 +35,7 @@ const actions = {
   async login({ commit }, user) {
     commit('auth_request');
     try {
-      const res = await axios.post(`/login`, user);
+      const res = await axios.post(`http://localhost:3000/login`, user);
       if (res.status === 200 || res.status === 201) {
         commit('auth_success', user);
       } else {
