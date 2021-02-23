@@ -4,6 +4,8 @@
 
 ---
 
+- **_Note:_** I am currently working on deploying this web application. However, this application can still be viewed locally on your computer.
+
 ## Technology Stack & Features:
 
 ### Vue.js, Node.js, MongoDB
@@ -11,10 +13,6 @@
 - This application was created using the model-view-controller approach
 - Client side: Vuex, Vuetify, Vuelidate
 - Server side: Express.js routes, Mongoose, Bcrypt,
-
----
-
-- **_Note:_** I am currently working on deploying this web application. However, this application can still be viewed locally on your computer.
 
 ## To view this application locally:
 
