@@ -61,7 +61,7 @@ app.set('view engine', 'html');
 // app.use(express.static(__dirname + '/client/dist/'));
 
 // Database connection
-mongoose.connect(process.env.DATABASE_URL, {
+mongoose.connect('mongodb://localhost/FindYourFit', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
